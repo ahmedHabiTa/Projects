@@ -9,6 +9,8 @@ class AllSubject extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
+    //This List For Example
     List<String> subjects = ['ahmed','c2','hend','alaa','hafez'];
     return Scaffold(
       drawer: MainDrawer(),
