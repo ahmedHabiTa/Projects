@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
-import 'package:triple_s_project/screens/home_page.dart';
-import 'package:triple_s_project/screens/login_screen.dart';
+import '../screens/home/home_page.dart';
+import '../screens/auth/login_screen.dart';
+
 class MainDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class MainDrawer extends StatelessWidget {
               ),
             ),
             currentAccountPicture: CircleAvatar(
-              backgroundImage: AssetImage('images/hii.png'),
+              backgroundImage: AssetImage('images/center_logo.jpg'),
             ),
             decoration: BoxDecoration(
               color: Colors.white60,
@@ -50,7 +50,7 @@ class MainDrawer extends StatelessWidget {
           ),
           ListTile(
             leading:
-            Icon(Icons.person, size: 30, color: const Color(0xFF1565C0)),
+                Icon(Icons.person, size: 30, color: const Color(0xFF1565C0)),
             title: Text(
               'Student Info',
             ),
@@ -65,7 +65,7 @@ class MainDrawer extends StatelessWidget {
               color: const Color(0xFF1565C0),
             ),
             title: Text('Home Page'),
-            onTap: (){
+            onTap: () {
               Navigator.of(context).pushReplacementNamed(MyHome.routeName);
             },
           ),
@@ -96,7 +96,7 @@ class MainDrawer extends StatelessWidget {
               color: const Color(0xFF1565C0),
             ),
             title: Text('Settings'),
-            onTap: (){
+            onTap: () {
               Navigator.pushNamed(context, '/settings');
             },
           ),
@@ -107,7 +107,6 @@ class MainDrawer extends StatelessWidget {
               color: const Color(0xFF1565C0),
             ),
             title: Text('Log out'),
-
           ),
         ],
       ),

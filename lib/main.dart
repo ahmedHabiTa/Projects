@@ -1,29 +1,31 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:triple_s_project/providers/theme_provider.dart';
-import 'package:triple_s_project/screens/banks.dart';
-import 'package:triple_s_project/screens/reports.dart';
-import 'package:triple_s_project/screens/exams.dart';
-import 'package:triple_s_project/screens/examsschedule.dart';
-import 'package:triple_s_project/screens/home_page.dart';
-import 'package:triple_s_project/screens/login_screen.dart';
-import 'package:triple_s_project/screens/online.dart';
-import 'package:triple_s_project/screens/quiz.dart';
-import 'package:triple_s_project/screens/results.dart';
-import 'package:triple_s_project/screens/studen_info_screen.dart';
-import 'package:triple_s_project/screens/subject_detail_screen.dart';
-import 'package:triple_s_project/screens/subjects_screen.dart';
-import 'package:triple_s_project/screens/theme_settings.dart';
+
+import 'providers/theme_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:triple_s_project/widgets/main_splash_scrseen.dart';
+
+import 'screens/home/exam_schedule.dart';
+import 'screens/home/home_page.dart';
+import 'screens/auth/login_screen.dart';
+import 'screens/home/online.dart';
+import 'screens/home/results.dart';
+import 'screens/student_info_screen.dart';
+import 'screens/subject_profile/details/bank/all_banks_screen.dart';
+import 'screens/subject_profile/details/exam/exams.dart';
+import 'screens/subject_profile/details/quiz/all_quizzes_secreen.dart';
+import 'screens/subject_profile/details/report/reports.dart';
+import 'screens/theme_settings.dart';
+
+import 'screens/subject_profile/subject_detail_screen.dart';
+import 'screens/subject_profile/subjects_screen.dart';
+
+import 'widgets/main_splash_scrseen.dart';
 
 void main() async {
-
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider<ThemeProvider>(
-        create: (context)=> ThemeProvider(),
+        create: (context) => ThemeProvider(),
       ),
     ],
     child: MyApp(),
@@ -31,7 +33,6 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     var primaryColor =
@@ -49,13 +50,13 @@ class MyApp extends StatelessWidget {
             accentColor: accentColor,
             canvasColor: Color.fromRGBO(255, 254, 229, 1),
             textTheme: ThemeData.light().textTheme.copyWith(
-              bodyText1: TextStyle(color: Color.fromRGBO(20, 50, 50, 1)),
-              headline6: TextStyle(
-                  color: Colors.black87,
-                  fontSize: 19,
-                  fontFamily: 'Satisfy',
-                  fontWeight: FontWeight.bold),
-            )),
+                  bodyText1: TextStyle(color: Color.fromRGBO(20, 50, 50, 1)),
+                  headline6: TextStyle(
+                      color: Colors.black87,
+                      fontSize: 19,
+                      fontFamily: 'Satisfy',
+                      fontWeight: FontWeight.bold),
+                )),
         darkTheme: ThemeData(
             unselectedWidgetColor: Colors.white70,
             cardColor: Colors.white,
@@ -64,31 +65,29 @@ class MyApp extends StatelessWidget {
             accentColor: accentColor,
             canvasColor: Color.fromRGBO(14, 22, 33, 1),
             textTheme: ThemeData.dark().textTheme.copyWith(
-              bodyText1: TextStyle(color: Colors.white),
-              headline6: TextStyle(
-                  color: Colors.white70,
-                  fontSize: 19,
-                  fontFamily: 'Satisfy',
-                  fontWeight: FontWeight.bold),
-            )),
+                  bodyText1: TextStyle(color: Colors.white),
+                  headline6: TextStyle(
+                      color: Colors.white70,
+                      fontSize: 19,
+                      fontFamily: 'Satisfy',
+                      fontWeight: FontWeight.bold),
+                )),
         initialRoute: 'LoginScreen',
-
         routes: {
           'main_splash': (context) => MainSplashScreen(),
           'LoginScreen': (context) => LoginScreen(),
-          MyHome.routeName :(context) => MyHome(),
+          MyHome.routeName: (context) => MyHome(),
           Reports.routeName: (context) => Reports(),
           '/online': (context) => OnLine(),
           '/exams': (context) => Exams(),
-          Quizzes.routeName: (context) => Quizzes(),
+          ALLQuizzesScreen.routeName: (context) => ALLQuizzesScreen(),
           '/results': (context) => Results(),
           '/Exams Schedule': (context) => ExamsSchedule(),
           '/std': (context) => Student(),
-          '/settings':(context) => ThemesScreen(),
-          AllSubject.routeName : (context) => AllSubject(),
-          SubjectDetailScreen.routeName :(context) => SubjectDetailScreen(),
-          Banks.routeName :(context) => Banks(),
+          '/settings': (context) => ThemesScreen(),
+          AllSubject.routeName: (context) => AllSubject(),
+          SubjectDetailScreen.routeName: (context) => SubjectDetailScreen(),
+          Banks.routeName: (context) => Banks(),
         });
   }
 }
-

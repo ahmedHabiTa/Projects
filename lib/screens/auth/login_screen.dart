@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:triple_s_project/screens/home_page.dart';
-import 'package:triple_s_project/Animation/FadeAnimation.dart';
-import 'package:triple_s_project/widgets/loading.dart';
+import '../home/home_page.dart';
+import '../../Animation/FadeAnimation.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -21,7 +20,7 @@ class LoginScreenState extends State<LoginScreen> {
         Container(
           decoration: BoxDecoration(
               image: DecorationImage(
-            image: AssetImage('images/aaa.jpg'),
+            image: AssetImage('images/auth_background.jpg'),
             fit: BoxFit.cover,
           )),
           padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
@@ -104,7 +103,8 @@ class LoginScreenState extends State<LoginScreen> {
                             borderRadius: BorderRadius.circular(60),
                           ),
                         ),
-                        validator: (val) => val.isEmpty ? 'Enter your ID ' : null,
+                        validator: (val) =>
+                            val.isEmpty ? 'Enter your ID ' : null,
                         obscureText: false,
                       ),
                     ),

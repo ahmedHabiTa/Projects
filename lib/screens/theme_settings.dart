@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:triple_s_project/providers/theme_provider.dart';
-import 'package:triple_s_project/widgets/main_drawer.dart';
+import '../providers/theme_provider.dart';
+import '../widgets/main_drawer.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:provider/provider.dart';
 
 class ThemesScreen extends StatelessWidget {
   static const routeName = '/themes_screen';
-
 
   Widget buildRadioListTile(
       ThemeMode themeVal, String txt, IconData icon, BuildContext ctx) {
@@ -26,48 +25,46 @@ class ThemesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-        drawer:  MainDrawer(),
-        appBar:  AppBar(
-                title: Text('Themes',style: Theme.of(context).textTheme.headline6,),
-              ),
-        body: Column(
-          children: [
-            Container(
-              padding: EdgeInsets.all(20),
-              child: Text(
-                'Adjust your theme MODE',
-                style: Theme.of(context).textTheme.headline6,
-              ),
-            ),
-            Expanded(
-              child: ListView(
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(20),
-                    child: Text(
-                      'Choose your Theme MODE',
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                  ),
-                  buildRadioListTile(ThemeMode.system,
-                      'System Default Theme', null, context),
-                  buildRadioListTile(
-                      ThemeMode.light,
-                      'Light MODE',
-                      Icons.wb_sunny_outlined,
-                      context),
-                  buildRadioListTile(ThemeMode.dark, 'Dark MODE',
-                      Icons.nights_stay_outlined, context),
-                  buildListTile(context, 'primary'),
-                  buildListTile(context, 'accent'),
-
-                ],
-              ),
-            ),
-          ],
+    return Scaffold(
+      drawer: MainDrawer(),
+      appBar: AppBar(
+        title: Text(
+          'Themes',
+          style: Theme.of(context).textTheme.headline6,
         ),
-
+      ),
+      body: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.all(20),
+            child: Text(
+              'Adjust your theme MODE',
+              style: Theme.of(context).textTheme.headline6,
+            ),
+          ),
+          Expanded(
+            child: ListView(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(20),
+                  child: Text(
+                    'Choose your Theme MODE',
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                ),
+                buildRadioListTile(
+                    ThemeMode.system, 'System Default Theme', null, context),
+                buildRadioListTile(ThemeMode.light, 'Light MODE',
+                    Icons.wb_sunny_outlined, context),
+                buildRadioListTile(ThemeMode.dark, 'Dark MODE',
+                    Icons.nights_stay_outlined, context),
+                buildListTile(context, 'primary'),
+                buildListTile(context, 'accent'),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -82,8 +79,7 @@ class ThemesScreen extends StatelessWidget {
           //style: Theme.of(context).textTheme.headline6,
         ),
         trailing: CircleAvatar(
-          backgroundColor:
-              txt == 'primary' ? primaryColor : accentColor,
+          backgroundColor: txt == 'primary' ? primaryColor : accentColor,
         ),
         onTap: () {
           showDialog(
@@ -102,8 +98,7 @@ class ThemesScreen extends StatelessWidget {
                               .accentColor,
                       onColorChanged: (newColor) =>
                           Provider.of<ThemeProvider>(ctx, listen: false)
-                              .onChanged(newColor,
-                                  txt == 'primary' ? 1 : 2),
+                              .onChanged(newColor, txt == 'primary' ? 1 : 2),
                       colorPickerWidth: 300,
                       pickerAreaHeightPercent: 0.7,
                       enableAlpha: false,
