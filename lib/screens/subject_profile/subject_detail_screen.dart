@@ -9,9 +9,8 @@ import 'details/report/reports.dart';
 
 class SubjectDetailScreen extends StatefulWidget {
   static const routeName = 'subject_details_screen';
-  final String id;
-
-  const SubjectDetailScreen({Key key, this.id}) : super(key: key);
+  final Subject subject;
+  const SubjectDetailScreen({Key key, this.subject}) : super(key: key);
   @override
   _SubjectDetailScreenState createState() => _SubjectDetailScreenState();
 }
@@ -21,17 +20,16 @@ class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
   void initState() {
     super.initState();
     Provider.of<SubjectsProvider>(context, listen: false)
-        .getSubjectById(id: widget.id);
+        .getSubjectById(id: widget.subject.id);
   }
 
   @override
   Widget build(BuildContext context) {
-    final subject = ModalRoute.of(context).settings.arguments as Subject;
     return Scaffold(
         appBar: AppBar(
           elevation: 0.0,
           title: Text(
-            subject.name,
+            widget.subject.name,
             style: Theme.of(context).textTheme.headline6,
           ),
         ),

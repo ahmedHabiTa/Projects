@@ -50,9 +50,10 @@ class _AllSubjectState extends State<AllSubject> {
                               contentPadding: EdgeInsets.symmetric(
                                   horizontal: 16.0, vertical: 8.0),
                               onTap: () {
-                                Navigator.of(context).pushNamed(
-                                    SubjectDetailScreen.routeName,
-                                    arguments: e);
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (ctx) => SubjectDetailScreen(
+                                          subject: e,
+                                        )));
                               },
                               leading: Image.asset("images/subject.png"),
                               title: Text(e.name,
