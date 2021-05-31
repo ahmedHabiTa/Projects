@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 
+import 'providers/allSubjects.dart';
+import 'providers/auth.dart';
+import 'providers/theme_provider.dart';
+import 'screens/auth/login_screen.dart';
 import 'screens/home/exam_schedule.dart';
 import 'screens/home/home_page.dart';
-import 'screens/auth/login_screen.dart';
 import 'screens/home/online.dart';
 import 'screens/home/results.dart';
 import 'screens/student_info_screen.dart';
@@ -14,11 +15,9 @@ import 'screens/subject_profile/details/bank/all_banks_screen.dart';
 import 'screens/subject_profile/details/exam/exams.dart';
 import 'screens/subject_profile/details/quiz/all_quizzes_secreen.dart';
 import 'screens/subject_profile/details/report/reports.dart';
-import 'screens/theme_settings.dart';
-
 import 'screens/subject_profile/subject_detail_screen.dart';
 import 'screens/subject_profile/subjects_screen.dart';
-
+import 'screens/theme_settings.dart';
 import 'widgets/main_splash_scrseen.dart';
 
 void main() async {
@@ -26,6 +25,12 @@ void main() async {
     providers: [
       ChangeNotifierProvider<ThemeProvider>(
         create: (context) => ThemeProvider(),
+      ),
+      ChangeNotifierProvider<Auth>(
+        create: (context) => Auth(),
+      ),
+      ChangeNotifierProvider<Subjects>(
+        create: (context) => Subjects(),
       ),
     ],
     child: MyApp(),

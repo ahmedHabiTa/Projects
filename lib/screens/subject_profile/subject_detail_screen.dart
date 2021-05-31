@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:triple_s_project/screens/subject_profile/subjects_screen.dart';
 
-import '../../widgets/main_drawer.dart';
+import '../../model/subjects.dart';
 import 'details/bank/all_banks_screen.dart';
 import 'details/quiz/all_quizzes_secreen.dart';
 import 'details/report/reports.dart';

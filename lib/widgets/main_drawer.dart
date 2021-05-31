@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../providers/auth.dart';
 import '../screens/home/home_page.dart';
 import '../screens/auth/login_screen.dart';
 
 class MainDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<Auth>(context).user;
     return Drawer(
       elevation: 0,
       child: ListView(
@@ -13,12 +16,12 @@ class MainDrawer extends StatelessWidget {
           UserAccountsDrawerHeader(
             margin: EdgeInsets.all(0.7),
             accountEmail: Text(
-              'Student@std.mans.edu.eg',
+              user.email,
               textAlign: TextAlign.end,
               style: TextStyle(color: Colors.black87),
             ),
             accountName: Text(
-              'Student Name',
+              user.name,
               style: TextStyle(
                 color: Colors.black87,
                 fontWeight: FontWeight.w300,
