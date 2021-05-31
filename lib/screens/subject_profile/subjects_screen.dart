@@ -16,14 +16,14 @@ class _AllSubjectState extends State<AllSubject> {
   @override
   void initState() {
     super.initState();
-    Provider.of<Subjects>(context, listen: false).getSubjects();
+    Provider.of<SubjectsProvider>(context, listen: false).getSubjects();
   }
 
   @override
   Widget build(BuildContext context) {
-    List<Subject> subjects = Provider.of<Subjects>(context).subjects;
+    List<Subject> subjects = Provider.of<SubjectsProvider>(context).subjects;
     return Scaffold(
-        drawer: MainDrawer(),
+        // drawer: MainDrawer(),
         appBar: AppBar(
           title: Text(
             'Subjects',

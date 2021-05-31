@@ -29,8 +29,8 @@ void main() async {
       ChangeNotifierProvider<Auth>(
         create: (context) => Auth(),
       ),
-      ChangeNotifierProvider<Subjects>(
-        create: (context) => Subjects(),
+      ChangeNotifierProvider<SubjectsProvider>(
+        create: (context) => SubjectsProvider(),
       ),
     ],
     child: MyApp(),
@@ -46,53 +46,65 @@ class MyApp extends StatelessWidget {
         Provider.of<ThemeProvider>(context, listen: true).accentColor;
     var tm = Provider.of<ThemeProvider>(context, listen: true).tm;
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        themeMode: tm,
-        theme: ThemeData(
-            cardColor: Colors.black87,
-            buttonColor: Colors.black87,
-            primarySwatch: primaryColor,
-            accentColor: accentColor,
-            canvasColor: Color.fromRGBO(255, 254, 229, 1),
-            textTheme: ThemeData.light().textTheme.copyWith(
-                  bodyText1: TextStyle(color: Color.fromRGBO(20, 50, 50, 1)),
-                  headline6: TextStyle(
-                      color: Colors.black87,
-                      fontSize: 19,
-                      fontFamily: 'Satisfy',
-                      fontWeight: FontWeight.bold),
-                )),
-        darkTheme: ThemeData(
-            unselectedWidgetColor: Colors.white70,
-            cardColor: Colors.white,
-            buttonColor: Colors.white,
-            primarySwatch: primaryColor,
-            accentColor: accentColor,
-            canvasColor: Color.fromRGBO(14, 22, 33, 1),
-            textTheme: ThemeData.dark().textTheme.copyWith(
-                  bodyText1: TextStyle(color: Colors.white),
-                  headline6: TextStyle(
-                      color: Colors.white70,
-                      fontSize: 19,
-                      fontFamily: 'Satisfy',
-                      fontWeight: FontWeight.bold),
-                )),
-        initialRoute: 'LoginScreen',
-        routes: {
-          'main_splash': (context) => MainSplashScreen(),
-          'LoginScreen': (context) => LoginScreen(),
-          MyHome.routeName: (context) => MyHome(),
-          Reports.routeName: (context) => Reports(),
-          '/online': (context) => OnLine(),
-          '/exams': (context) => Exams(),
-          ALLQuizzesScreen.routeName: (context) => ALLQuizzesScreen(),
-          '/results': (context) => Results(),
-          '/Exams Schedule': (context) => ExamsSchedule(),
-          '/std': (context) => Student(),
-          '/settings': (context) => ThemesScreen(),
-          AllSubject.routeName: (context) => AllSubject(),
-          SubjectDetailScreen.routeName: (context) => SubjectDetailScreen(),
-          Banks.routeName: (context) => Banks(),
-        });
+      debugShowCheckedModeBanner: false,
+      themeMode: tm,
+      theme: ThemeData(
+          cardColor: Colors.black87,
+          buttonColor: Colors.black87,
+          primarySwatch: primaryColor,
+          accentColor: accentColor,
+          canvasColor: Color.fromRGBO(255, 254, 229, 1),
+          textTheme: ThemeData.light().textTheme.copyWith(
+                bodyText1: TextStyle(color: Color.fromRGBO(20, 50, 50, 1)),
+                headline6: TextStyle(
+                    color: Colors.black87,
+                    fontSize: 19,
+                    fontFamily: 'Satisfy',
+                    fontWeight: FontWeight.bold),
+              )),
+      darkTheme: ThemeData(
+          unselectedWidgetColor: Colors.white70,
+          cardColor: Colors.white,
+          buttonColor: Colors.white,
+          primarySwatch: primaryColor,
+          accentColor: accentColor,
+          canvasColor: Color.fromRGBO(14, 22, 33, 1),
+          textTheme: ThemeData.dark().textTheme.copyWith(
+                bodyText1: TextStyle(color: Colors.white),
+                headline6: TextStyle(
+                    color: Colors.white70,
+                    fontSize: 19,
+                    fontFamily: 'Satisfy',
+                    fontWeight: FontWeight.bold),
+              )),
+      routes: {
+        'main_splash': (context) => MainSplashScreen(),
+        'LoginScreen': (context) => LoginScreen(),
+        MyHome.routeName: (context) => MyHome(),
+        Reports.routeName: (context) => Reports(),
+        '/online': (context) => OnLine(),
+        '/exams': (context) => Exams(),
+        ALLQuizzesScreen.routeName: (context) => ALLQuizzesScreen(),
+        '/results': (context) => Results(),
+        '/Exams Schedule': (context) => ExamsSchedule(),
+        '/std': (context) => Student(),
+        '/settings': (context) => ThemesScreen(),
+        AllSubject.routeName: (context) => AllSubject(),
+        SubjectDetailScreen.routeName: (context) => SubjectDetailScreen(),
+        Banks.routeName: (context) => Banks(),
+      },
+      home: Consumer<Auth>(
+          builder: (context, auth, child) => FutureBuilder<bool>(
+              future: auth.isSigning(),
+              builder: (ctx, sh) {
+                if (sh.connectionState == ConnectionState.waiting) {
+                  return MainSplashScreen();
+                } else if (sh.data) {
+                  return MyHome();
+                } else {
+                  return LoginScreen();
+                }
+              })),
+    );
   }
 }

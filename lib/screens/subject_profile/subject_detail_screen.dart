@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:triple_s_project/providers/allSubjects.dart';
 
 import '../../model/subjects.dart';
 import 'details/bank/all_banks_screen.dart';
@@ -7,12 +9,21 @@ import 'details/report/reports.dart';
 
 class SubjectDetailScreen extends StatefulWidget {
   static const routeName = 'subject_details_screen';
+  final String id;
 
+  const SubjectDetailScreen({Key key, this.id}) : super(key: key);
   @override
   _SubjectDetailScreenState createState() => _SubjectDetailScreenState();
 }
 
 class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<SubjectsProvider>(context, listen: false)
+        .getSubjectById(id: widget.id);
+  }
+
   @override
   Widget build(BuildContext context) {
     final subject = ModalRoute.of(context).settings.arguments as Subject;
