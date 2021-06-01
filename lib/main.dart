@@ -85,7 +85,7 @@ class MyApp extends StatelessWidget {
         '/online': (context) => OnLine(),
         '/exams': (context) => Exams(),
         ALLQuizzesScreen.routeName: (context) => ALLQuizzesScreen(),
-        '/results': (context) => Results(),
+        '/results': (context) => ResultsScreen(),
         '/Exams Schedule': (context) => ExamsSchedule(),
         '/std': (context) => StudentInfo(),
         '/settings': (context) => ThemesScreen(),

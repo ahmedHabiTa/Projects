@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
+import '../../providers/auth.dart';
+import 'results.dart';
 import '../subject_profile/subjects_screen.dart';
 import '../../widgets/main_drawer.dart';
 
@@ -8,6 +11,7 @@ class MyHome extends StatelessWidget {
   static const routeName = 'My_home';
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<Auth>(context).user;
     var deviceHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: new AppBar(
@@ -46,7 +50,12 @@ class MyHome extends StatelessWidget {
           _buildHomeCard(
             'Final Results',
             () {
-              Navigator.pushNamed(context, '/results');
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (ctx) => ResultsScreen(
+                            table: user.table,
+                          )));
             },
           )
         ],

@@ -69,9 +69,11 @@ class Auth extends ChangeNotifier {
     }
   }
 
-  // دي الليست الي هتسخدميها في عرض مواد اليوم
-  List<TableSubject> selectedSubjects;
-  // دي الفانكشن الي هتغيري بيها اليوم هتبعليها الليست الجديدة
+  /// دي الليست الي هتسخدميها في عرض مواد اليوم
+  List<TableSubject> selectedSubjects = [];
+
+  ///  دي الفانكشن الي هتغيري بيها اليوم
+  ///  هتبعتلها الليست الجديدة
   void changeSelectedSubjects(List<TableSubject> listSubject) {
     selectedSubjects = listSubject;
     notifyListeners();

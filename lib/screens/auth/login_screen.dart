@@ -225,5 +225,3 @@ class LoginScreenState extends State<LoginScreen> {
         )));
   }
 }
-
-class Fluttertoast {}

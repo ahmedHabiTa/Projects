@@ -5,7 +5,6 @@ import 'package:triple_s_project/providers/auth.dart';
 import 'package:triple_s_project/providers/theme_provider.dart';
 import 'package:triple_s_project/screens/home/home_page.dart';
 
-
 class LoginScreen extends StatefulWidget {
   @override
   LoginScreenState createState() => LoginScreenState();
@@ -50,53 +49,134 @@ class LoginScreenState extends State<LoginScreen> {
     return SafeArea(
       child: Scaffold(
           body: SingleChildScrollView(
-            child: Form(
-              key: globalKey,
-              child: Column(
-                children: [
-                  SizedBox(height: 20,),
-                  FadeAnimation(1,
-                    Container(
-                      alignment: Alignment.bottomCenter,
-                      child: Image.asset('images/login_image.jpg'),
-                      height: 220,
-                      width: double.infinity,
+        child: Form(
+          key: globalKey,
+          child: Column(
+            children: [
+              SizedBox(
+                height: 20,
+              ),
+              FadeAnimation(
+                1,
+                Container(
+                  alignment: Alignment.bottomCenter,
+                  child: Image.asset('images/login_image.jpg'),
+                  height: 220,
+                  width: double.infinity,
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              FadeAnimation(
+                1.3,
+                Text('كلية الهندسة جامعة المنصورة',
+                    style: TextStyle(
+                      fontFamily: 'Lobster',
+                      fontSize: 20.0,
+                    )),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              FadeAnimation(
+                2.1,
+                Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30)),
+                  color: themeMode == ThemeMode.dark
+                      ? Colors.white
+                      : Colors.purple[300],
+                  child: Padding(
+                    padding: const EdgeInsets.all(2.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: themeMode == ThemeMode.dark
+                            ? Theme.of(context).canvasColor
+                            : Colors.white,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      padding: EdgeInsets.all(8),
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            prefixIcon: Icon(Icons.person,
+                                color: themeMode == ThemeMode.dark
+                                    ? Colors.white
+                                    : Colors.purple[300]),
+                            hintText: 'National ID ',
+                            hintStyle: TextStyle(
+                                color: themeMode == ThemeMode.dark
+                                    ? Colors.white
+                                    : Colors.purple[400]),
+                            focusColor: themeMode == ThemeMode.dark
+                                ? Colors.white
+                                : Colors.purple[300]
+                            // fillColor: Colors.white38,
+                            // filled: true,
+                            // enabledBorder: OutlineInputBorder(
+                            //   borderSide: BorderSide(
+                            //       color: Colors.white,
+                            //       width: 1.0,
+                            //       style: BorderStyle.solid),
+                            //   borderRadius: BorderRadius.circular(60),
+                            // ),
+                            // focusedBorder: OutlineInputBorder(
+                            //   borderSide: BorderSide(
+                            //       color: Colors.lightBlue,
+                            //       width: 1.0,
+                            //       style: BorderStyle.solid),
+                            //   borderRadius: BorderRadius.circular(60),
+                            // ),
+                            ),
+                        onChanged: (val) {
+                          nId = val;
+                        },
+                        validator: (val) =>
+                            val.isEmpty ? 'Enter your ID ' : null,
+                        obscureText: false,
+                      ),
                     ),
                   ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  FadeAnimation(
-                    1.3,
-                    Text('كلية الهندسة جامعة المنصورة',
-                        style: TextStyle(
-                          fontFamily: 'Lobster',
-                          fontSize: 20.0,
-                        )),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  FadeAnimation(
-                    2.1,
+                ),
+              ),
+              SizedBox(height: 20.0),
+              FadeAnimation(
+                2.3,
+                Stack(
+                  alignment: Alignment.centerRight,
+                  children: [
                     Card(
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                      color: themeMode == ThemeMode.dark ? Colors.white : Colors.purple[300],
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30)),
+                      color: themeMode == ThemeMode.dark
+                          ? Colors.white
+                          : Colors.purple[300],
                       child: Padding(
                         padding: const EdgeInsets.all(2.0),
                         child: Container(
                           decoration: BoxDecoration(
-                            color: themeMode == ThemeMode.dark ? Theme.of(context).canvasColor : Colors.white,
+                            color: themeMode == ThemeMode.dark
+                                ? Theme.of(context).canvasColor
+                                : Colors.white,
                             borderRadius: BorderRadius.circular(30),
                           ),
                           padding: EdgeInsets.all(8),
                           child: TextFormField(
                             decoration: InputDecoration(
-                                border: InputBorder.none,
-                                prefixIcon: Icon(Icons.person,color: themeMode == ThemeMode.dark ? Colors.white : Colors.purple[300]),
-                                hintText: 'National ID ',
-                                hintStyle: TextStyle(color: themeMode == ThemeMode.dark ? Colors.white : Colors.purple[400]),
-                                focusColor: themeMode == ThemeMode.dark ? Colors.white : Colors.purple[300]
+                              border: InputBorder.none,
+                              hintText: 'Faculty ID',
+                              hintStyle: TextStyle(
+                                  color: themeMode == ThemeMode.dark
+                                      ? Colors.white
+                                      : Colors.purple[300]),
+                              prefixIcon: Icon(Icons.lock,
+                                  color: themeMode == ThemeMode.dark
+                                      ? Colors.white
+                                      : Colors.purple[300]),
+                              focusColor: themeMode == ThemeMode.dark
+                                  ? Colors.white
+                                  : Colors.purple[300],
                               //fillColor: Colors.white38,
                               //filled: true,
                               // enabledBorder: OutlineInputBorder(
@@ -115,123 +195,70 @@ class LoginScreenState extends State<LoginScreen> {
                               // ),
                             ),
                             onChanged: (val) {
-                              nId = val;
+                              fId = val;
                             },
                             validator: (val) =>
-                            val.isEmpty ? 'Enter your ID ' : null,
-                            obscureText: false,
+                                val.length < 5 ? ' Enter a password   ' : null,
+                            obscureText: obscureText,
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(height: 20.0),
-                  FadeAnimation(
-                    2.3,
-                    Stack(
-                      alignment: Alignment.centerRight,
-                      children: [
-                        Card(
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                          color: themeMode == ThemeMode.dark ? Colors.white : Colors.purple[300],
-                          child: Padding(
-                            padding: const EdgeInsets.all(2.0),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: themeMode == ThemeMode.dark ? Theme.of(context).canvasColor : Colors.white,
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                              padding: EdgeInsets.all(8),
-                              child: TextFormField(
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: 'Faculty ID',
-                                  hintStyle: TextStyle(color: themeMode == ThemeMode.dark ? Colors.white : Colors.purple[300]),
-                                  prefixIcon: Icon(Icons.lock,color: themeMode == ThemeMode.dark ? Colors.white : Colors.purple[300]),
-                                  focusColor: themeMode == ThemeMode.dark ? Colors.white : Colors.purple[300],
-                                  //fillColor: Colors.white38,
-                                  //filled: true,
-                                  // enabledBorder: OutlineInputBorder(
-                                  //   borderSide: BorderSide(
-                                  //       color: Colors.white,
-                                  //       width: 1.0,
-                                  //       style: BorderStyle.solid),
-                                  //   borderRadius: BorderRadius.circular(60),
-                                  // ),
-                                  // focusedBorder: OutlineInputBorder(
-                                  //   borderSide: BorderSide(
-                                  //       color: Colors.lightBlue,
-                                  //       width: 1.0,
-                                  //       style: BorderStyle.solid),
-                                  //   borderRadius: BorderRadius.circular(60),
-                                  // ),
-                                ),
-                                onChanged: (val) {
-                                  fId = val;
-                                },
-                                validator: (val) => val.length < 5
-                                    ? ' Enter a password   '
-                                    : null,
-                                obscureText: obscureText,
-                              ),
-                            ),
-                          ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10.0),
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.remove_red_eye,
+                          color: Colors.pink,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(right :10.0),
-                          child: IconButton(
-                            icon: Icon(
-                              Icons.remove_red_eye,
-                              color: Colors.pink,
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                obscureText = !obscureText;
-                              });
-                            },
-                          ),
-                        ),
-                      ],
+                        onPressed: () {
+                          setState(() {
+                            obscureText = !obscureText;
+                          });
+                        },
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 60.0),
-                  FadeAnimation(
-                      2.6,
-                      Container(
-                        height: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child:
+                  ],
+                ),
+              ),
+              SizedBox(height: 60.0),
+              FadeAnimation(
+                  2.6,
+                  Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child:
                         // !loading
                         //     ?
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            height: 40,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: themeMode == ThemeMode.dark ? Colors.white : Colors.purple[500]
-                            ),
-                            child: FlatButton(
-                                onPressed: _login,
-                                child:  Text('Login',
-                                    style: TextStyle(
-                                      color: themeMode == ThemeMode.dark ? Colors.black87 : Colors.white,
-                                      fontFamily: 'Lobster',
-                                      fontSize: 20.0,
-                                    ))
-                            ),
-                          ),
-                        ),
-                        // : CircularProgressIndicator(),
-                      )),
-                ],
-              ),
-            ),
-          )),
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        height: 40,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: themeMode == ThemeMode.dark
+                                ? Colors.white
+                                : Colors.purple[500]),
+                        child: FlatButton(
+                            onPressed: _login,
+                            child: Text('Login',
+                                style: TextStyle(
+                                  color: themeMode == ThemeMode.dark
+                                      ? Colors.black87
+                                      : Colors.white,
+                                  fontFamily: 'Lobster',
+                                  fontSize: 20.0,
+                                ))),
+                      ),
+                    ),
+                    // : CircularProgressIndicator(),
+                  )),
+            ],
+          ),
+        ),
+      )),
     );
   }
 }
-
-class Fluttertoast {}
