@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:triple_s_project/screens/quiz.dart';
-import 'package:triple_s_project/screens/reports.dart';
+import 'package:triple_s_project/screens/subject_profile/details/bank/all_banks_screen.dart';
+import 'package:triple_s_project/screens/subject_profile/details/quiz/all_quizzes_secreen.dart';
+import 'package:triple_s_project/screens/subject_profile/details/report/reports.dart';
 import 'package:triple_s_project/widgets/main_drawer.dart';
 
-import 'banks.dart';
+
 
 class SubjectDetailScreen extends StatefulWidget {
   static const routeName = 'subject_details_screen';
@@ -57,7 +58,7 @@ class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
                 child: ListTile(
                   onTap: () {
                     Navigator.of(context).pushNamed(
-                      Quizzes.routeName,
+                      ALLQuizzesScreen.routeName,
                     );
                   },
                   leading: Text('Quiz',

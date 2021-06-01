@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
           buttonColor: Colors.black87,
           primarySwatch: primaryColor,
           accentColor: accentColor,
-          canvasColor: Color.fromRGBO(255, 254, 229, 1),
+          canvasColor: Colors.black87,
           textTheme: ThemeData.light().textTheme.copyWith(
                 bodyText1: TextStyle(color: Color.fromRGBO(20, 50, 50, 1)),
                 headline6: TextStyle(
@@ -87,7 +87,7 @@ class MyApp extends StatelessWidget {
         ALLQuizzesScreen.routeName: (context) => ALLQuizzesScreen(),
         '/results': (context) => Results(),
         '/Exams Schedule': (context) => ExamsSchedule(),
-        '/std': (context) => Student(),
+        '/std': (context) => StudentInfo(),
         '/settings': (context) => ThemesScreen(),
         AllSubject.routeName: (context) => AllSubject(),
         SubjectDetailScreen.routeName: (context) => SubjectDetailScreen(),

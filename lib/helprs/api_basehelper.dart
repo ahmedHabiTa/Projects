@@ -8,7 +8,7 @@ class ApiBaseHelper {
   Future<dynamic> get(String url) async {
     var responseJson;
     try {
-      final response = await http.get(_baseUrl + url);
+      final response = await http.get(Uri.parse(_baseUrl + url));
       responseJson = _returnResponse(response);
     } on SocketException {
       throw FetchDataException('No Internet connection');
@@ -19,8 +19,7 @@ class ApiBaseHelper {
   Future<dynamic> post(String url, Map<String, dynamic> body) async {
     var responseJson;
     try {
-      final response = await http.post(
-        _baseUrl + url,
+      final response = await http.post(Uri.parse(_baseUrl + url),
         body: json.encode(body),
       );
       responseJson = _returnResponse(response);

@@ -1,115 +1,116 @@
-
 import 'package:flutter/material.dart';
-import 'package:triple_s_project/screens/home_page.dart';
-import 'package:triple_s_project/screens/login_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:triple_s_project/providers/theme_provider.dart';
+import '../providers/auth.dart';
+import '../screens/home/home_page.dart';
+import '../screens/auth/login_screen.dart';
+
 class MainDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<Auth>(context).user;
+    var themeMode = Provider.of<ThemeProvider>(context).tm;
     return Drawer(
       elevation: 0,
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          UserAccountsDrawerHeader(
-            margin: EdgeInsets.all(0.7),
-            accountEmail: Text(
-              'Student@std.mans.edu.eg',
-              textAlign: TextAlign.end,
-              style: TextStyle(color: Colors.black87),
-            ),
-            accountName: Text(
-              'Student Name',
-              style: TextStyle(
-                color: Colors.black87,
-                fontWeight: FontWeight.w300,
-                height: 0.2,
-              ),
-            ),
-            currentAccountPicture: CircleAvatar(
-              backgroundImage: AssetImage('images/hii.png'),
-            ),
-            decoration: BoxDecoration(
-              color: Colors.white60,
-              backgroundBlendMode: BlendMode.softLight,
-              shape: BoxShape.rectangle,
-              // image: DecorationImage(
-              //     image: AssetImage(
-              //       'images/hend4.jpg',
-              //     ),
-              //     scale: 0.6,
-              //     fit: BoxFit.contain,
-              //     alignment: Alignment.topRight),
-            ),
-          ),
-          Divider(
+          SizedBox(
             height: 10,
-            thickness: 4,
-            color: Colors.blueGrey,
-            indent: 32,
-            endIndent: 32,
           ),
-          ListTile(
-            leading:
-            Icon(Icons.person, size: 30, color: const Color(0xFF1565C0)),
-            title: Text(
-              'Student Info',
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: CircleAvatar(
+              radius: 80,
+              backgroundImage: AssetImage('images/center_logo.jpg'),
             ),
-            onTap: () {
-              Navigator.pushNamed(context, '/std');
-            },
           ),
-          ListTile(
-            leading: Icon(
-              Icons.home,
-              size: 30.0,
-              color: const Color(0xFF1565C0),
-            ),
-            title: Text('Home Page'),
-            onTap: (){
-              Navigator.of(context).pushReplacementNamed(MyHome.routeName);
-            },
-          ),
-          ListTile(
-            leading: Icon(
-              Icons.table_view,
-              size: 30.0,
-              color: const Color(0xFF1565C0),
-            ),
-            title: Text('Table'),
-          ),
-          ListTile(
-            leading: Icon(Icons.notification_important_outlined,
-                size: 30, color: const Color(0xFF1565C0)),
-            title: Text('Notification'),
-          ),
-          Divider(
+          SizedBox(
             height: 10,
-            thickness: 4,
-            color: Colors.blueGrey,
-            indent: 20,
-            endIndent: 20,
           ),
-          ListTile(
-            leading: Icon(
-              Icons.settings,
-              size: 30,
-              color: const Color(0xFF1565C0),
+          Text(
+            user.name,
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w300,
+              height: 0.2,
             ),
-            title: Text('Settings'),
-            onTap: (){
-              Navigator.pushNamed(context, '/settings');
-            },
+            textAlign: TextAlign.center,
           ),
-          ListTile(
-            leading: Icon(
-              Icons.logout,
-              size: 30,
-              color: const Color(0xFF1565C0),
+          SizedBox(
+            height: 10,
+          ),
+          Text(
+            user.department,
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w300,
+              height: 0.2,
             ),
-            title: Text('Log out'),
-
+            textAlign: TextAlign.center,
           ),
+          SizedBox(
+            height: 10,
+          ),
+          Text(
+            user.grade,
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w300,
+              height: 0.2,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          customDrawerItem(themeMode, context, () {
+            Navigator.of(context).pushReplacementNamed(MyHome.routeName);
+          }, Icons.home, 'Home'),
+          customDrawerItem(themeMode, context, () {
+            Navigator.pushNamed(context, '/std');
+          }, Icons.person, 'Student Info'),
+          customDrawerItem(themeMode, context, (){},  Icons.table_view, 'Study Timetable'),
+          customDrawerItem(themeMode, context, (){},  Icons.description, 'Academic Results'),
+          customDrawerItem(themeMode, context, (){},  Icons.menu_book_sharp, 'Courses'),
+          customDrawerItem(themeMode, context, (){},  Icons.notification_important_outlined, 'Notification'),
+          customDrawerItem(themeMode, context, () {
+            Navigator.pushNamed(context, '/settings');
+          },  Icons.settings, 'Settings'),
+          customDrawerItem(themeMode, context, () async {
+            await Provider.of<Auth>(context, listen: false).logout();
+          },  Icons.logout, 'Log out'),
         ],
+      ),
+    );
+  }
+
+  Widget customDrawerItem(
+    ThemeMode themeMode,
+    context,
+    Function navigateTo,
+    IconData icon,
+    String text,
+  ) {
+    return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      color: Colors.blue[300],
+      child: Padding(
+        padding: EdgeInsets.all(2),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.black87,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: ListTile(
+            leading: Icon(icon, size: 30, color: Colors.white),
+            title: Text(
+              text,
+              style: TextStyle(color: Colors.white),
+            ),
+            onTap: navigateTo,
+          ),
+        ),
       ),
     );
   }
