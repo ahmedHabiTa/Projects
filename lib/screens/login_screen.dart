@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:triple_s_project/screens/home_page.dart';
 import 'package:triple_s_project/Animation/FadeAnimation.dart';
-
+import 'package:triple_s_project/widgets/loading.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
