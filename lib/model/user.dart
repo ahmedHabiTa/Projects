@@ -47,6 +47,7 @@ class User {
     this.token,
     this.fcmToken,
     this.table,
+    this.image
   });
 
   final String id;
@@ -62,6 +63,7 @@ class User {
   final String token;
   final String fcmToken;
   final List<Table> table;
+  final String image ;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
         id: json["id"] == null ? null : json["id"],

@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:triple_s_project/providers/theme_provider.dart';
 import '../providers/auth.dart';
 import '../screens/home/home_page.dart';
-import '../screens/auth/login_screen.dart';
 
 class MainDrawer extends StatelessWidget {
   @override
@@ -18,13 +17,13 @@ class MainDrawer extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: CircleAvatar(
-              radius: 80,
-              backgroundImage: AssetImage('images/center_logo.jpg'),
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(top: 10),
+          //   child: CircleAvatar(
+          //     radius: 80,
+          //     backgroundImage: NetworkImage(user.image),
+          //   ),
+          // ),
           SizedBox(
             height: 10,
           ),
