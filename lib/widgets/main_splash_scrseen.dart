@@ -9,7 +9,7 @@ class MainSplashScreen extends StatelessWidget {
       title: 'Smart Student System',
       debugShowCheckedModeBanner: false,
       home: AnimatedSplashScreen(
-        splash: Image.asset('images/hend2.jpg'),
+        splash: Image.asset('images/hend3.jpg'),
         nextScreen: LoginScreen(),
         splashIconSize: 250,
         backgroundColor: Colors.white,
