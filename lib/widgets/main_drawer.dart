@@ -17,13 +17,13 @@ class MainDrawer extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          // Padding(
-          //   padding: const EdgeInsets.only(top: 10),
-          //   child: CircleAvatar(
-          //     radius: 80,
-          //     backgroundImage: NetworkImage(user.image),
-          //   ),
-          // ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: CircleAvatar(
+              radius: 80,
+              backgroundImage: NetworkImage(user.image ?? ''),
+            ),
+          ),
           SizedBox(
             height: 10,
           ),
@@ -69,16 +69,20 @@ class MainDrawer extends StatelessWidget {
           customDrawerItem(themeMode, context, () {
             Navigator.pushNamed(context, '/std');
           }, Icons.person, 'Student Info'),
-          customDrawerItem(themeMode, context, (){},  Icons.table_view, 'Study Timetable'),
-          customDrawerItem(themeMode, context, (){},  Icons.description, 'Academic Results'),
-          customDrawerItem(themeMode, context, (){},  Icons.menu_book_sharp, 'Courses'),
-          customDrawerItem(themeMode, context, (){},  Icons.notification_important_outlined, 'Notification'),
+          customDrawerItem(
+              themeMode, context, () {}, Icons.table_view, 'Study Timetable'),
+          customDrawerItem(
+              themeMode, context, () {}, Icons.description, 'Academic Results'),
+          customDrawerItem(
+              themeMode, context, () {}, Icons.menu_book_sharp, 'Courses'),
+          customDrawerItem(themeMode, context, () {},
+              Icons.notification_important_outlined, 'Notification'),
           customDrawerItem(themeMode, context, () {
             Navigator.pushNamed(context, '/settings');
-          },  Icons.settings, 'Settings'),
+          }, Icons.settings, 'Settings'),
           customDrawerItem(themeMode, context, () async {
             await Provider.of<Auth>(context, listen: false).logout();
-          },  Icons.logout, 'Log out'),
+          }, Icons.logout, 'Log out'),
         ],
       ),
     );

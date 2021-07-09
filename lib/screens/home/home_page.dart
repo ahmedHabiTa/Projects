@@ -4,8 +4,8 @@ import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'package:triple_s_project/widgets/auto_slider.dart';
 import 'package:triple_s_project/widgets/head_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../providers/auth.dart';
-import '../webview_page.dart';
 import 'results.dart';
 import '../subject_profile/subjects_screen.dart';
 import '../../widgets/main_drawer.dart';
@@ -134,6 +134,15 @@ class ElearingGrid extends StatelessWidget {
 }
 
 class WebSitesGrid extends StatelessWidget {
+  _launchURL(String url) async {
+    print(url);
+    if (await canLaunch(url)) {
+      await launch(url, forceSafariVC: false);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var deviceSize = MediaQuery.of(context).size;
@@ -148,20 +157,13 @@ class WebSitesGrid extends StatelessWidget {
             _buildHomeCard(
               'Alfarabi',
               () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (ctx) => WebViewPage(
-                          url: "https://alfarabi.mans.edu.eg/login",
-                        )));
+                _launchURL("https://alfarabi.mans.edu.eg/login");
               },
             ),
             _buildHomeCard(
               'MULMS',
               () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (ctx) => WebViewPage(
-                          url:
-                              "https://vc1.mans.edu.eg/moodle02/login/index.php",
-                        )));
+                _launchURL("https://vc1.mans.edu.eg/moodle02/login/index.php");
               },
             ),
           ],
