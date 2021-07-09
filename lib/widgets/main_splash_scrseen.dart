@@ -1,7 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/Ahmed/AndroidStudioProjects/triple_s_project/lib/screens/auth/login_screen.dart';
-
+import 'package:triple_s_project/screens/auth/login_screen.dart';
 
 class MainSplashScreen extends StatelessWidget {
   @override

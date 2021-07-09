@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'file:///C:/Users/Ahmed/AndroidStudioProjects/triple_s_project/lib/screens/auth/login_screen.dart';
+import 'package:triple_s_project/screens/auth/login_screen.dart';
 
 import 'providers/allSubjects.dart';
 import 'providers/auth.dart';
@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
           buttonColor: Colors.black87,
           primarySwatch: primaryColor,
           accentColor: accentColor,
-         // canvasColor: Colors.black87,
+          // canvasColor: Colors.black87,
           textTheme: ThemeData.light().textTheme.copyWith(
                 bodyText1: TextStyle(color: Color.fromRGBO(20, 50, 50, 1)),
                 headline6: TextStyle(
