@@ -15,15 +15,18 @@ class MyHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: Text("Home"),
+          elevation: 0,
+        ),
         key: scaffoldKey,
         drawer: MainDrawer(),
         body: Column(children: [
-          HeadWidget(
-              scaffoldKey: scaffoldKey,
-              text: "Grow Your own Skill \n  by Online Learing"),
           Expanded(
               child: SingleChildScrollView(
                   child: Column(children: [
+            Text("Grow Your own Skill \n  by Online Learing",
+                style: TextStyle(fontSize: 22)),
             HeadLine("News"),
             CarouselWithIndicator(),
             HeadLine("E-learning"),
@@ -120,7 +123,7 @@ class ElearingGrid extends StatelessWidget {
                 children: <Widget>[
                   Icon(
                     Icons.text_snippet,
-                    color: Colors.lightBlue[800],
+                    color: Colors.pink,
                     size: 55,
                   ),
                   Text(title,
@@ -185,7 +188,7 @@ class WebSitesGrid extends StatelessWidget {
                 children: <Widget>[
                   Icon(
                     Icons.text_snippet,
-                    color: Colors.lightBlue[800],
+                    color: Colors.pink,
                     size: 55,
                   ),
                   Text(title,
