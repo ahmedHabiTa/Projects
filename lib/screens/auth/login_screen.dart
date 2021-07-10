@@ -47,34 +47,42 @@ class LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     var themeMode = Provider.of<ThemeProvider>(context).tm;
     return SafeArea(
-      child: Scaffold(
-          body: SingleChildScrollView(
-        child: Form(
-          key: globalKey,
+        child: Scaffold(
+      body: SingleChildScrollView(
+          child: Form(
+        key: globalKey,
+        child: Padding(
+          padding: EdgeInsets.all(16),
           child: Column(
             children: [
               SizedBox(
                 height: 20,
               ),
               FadeAnimation(
-                1,
+                  1,
+                  Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Text('Smart Student System',
+                        style: TextStyle(
+                          fontFamily: 'Lobster',
+                          fontSize: 22.0,
+                        )),
+                  )),
+              FadeAnimation(
+                1.3,
                 Container(
                   alignment: Alignment.bottomCenter,
-                  child: Image.asset('images/login_image.jpg'),
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(30),
+                      child: Image.asset(
+                        'images/login_image.jpg',
+                      )),
                   height: 220,
                   width: double.infinity,
                 ),
               ),
               SizedBox(
                 height: 15,
-              ),
-              FadeAnimation(
-                1.3,
-                Text('كلية الهندسة جامعة المنصورة',
-                    style: TextStyle(
-                      fontFamily: 'Lobster',
-                      fontSize: 20.0,
-                    )),
               ),
               SizedBox(
                 height: 15,
@@ -223,42 +231,36 @@ class LoginScreenState extends State<LoginScreen> {
               ),
               SizedBox(height: 60.0),
               FadeAnimation(
-                  2.6,
-                  Container(
-                    height: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child:
-                        // !loading
-                        //     ?
-                        Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        height: 40,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: themeMode == ThemeMode.dark
-                                ? Colors.white
-                                : Colors.purple[500]),
-                        child: FlatButton(
-                            onPressed: _login,
-                            child: Text('Login',
-                                style: TextStyle(
-                                  color: themeMode == ThemeMode.dark
-                                      ? Colors.black87
-                                      : Colors.white,
-                                  fontFamily: 'Lobster',
-                                  fontSize: 20.0,
-                                ))),
-                      ),
-                    ),
-                    // : CircularProgressIndicator(),
-                  )),
+                2.6,
+                ElevatedButton(
+                  child: Text('Login',
+                      style: TextStyle(
+                        color: themeMode == ThemeMode.dark
+                            ? Colors.black87
+                            : Colors.white,
+                        fontFamily: 'Lobster',
+                        fontSize: 24.0,
+                      )),
+                  style: ButtonStyle(
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                        EdgeInsets.symmetric(horizontal: 24, vertical: 8)),
+                    foregroundColor:
+                        MaterialStateProperty.all<Color>(Colors.white),
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.purple[300]),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            side: BorderSide(color: Colors.red))),
+                  ),
+                  onPressed: _login,
+                ),
+              )
+              //  : CircularProgressIndicator(),
             ],
           ),
         ),
       )),
-    );
+    ));
   }
 }

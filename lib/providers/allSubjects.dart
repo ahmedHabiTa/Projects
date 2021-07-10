@@ -36,6 +36,7 @@ class SubjectsProvider extends ChangeNotifier {
     return _selectedSubjectByid;
   }
 
+  bool subjectHasDataState = false;
   Future<void> getSubjectById({String id}) async {
     try {
       _selectedSubjectByid = null;
@@ -48,9 +49,51 @@ class SubjectsProvider extends ChangeNotifier {
       SubjectByIdRes selectedSubjectByidResponse =
           SubjectByIdRes.fromJson(response);
       _selectedSubjectByid = selectedSubjectByidResponse.data;
+      _selectedSubjectByid.quiz.map((quiz) {
+        quiz.questions.map((q) {
+          q.choisesList.addAll(q.choises.split(','));
+        }).toList();
+      }).toList();
+      subjectHasDataState = true;
       notifyListeners();
     } catch (e) {
       throw e;
     }
+  }
+
+  attemptQuiz(int quizId) {
+    _selectedSubjectByid.quiz[quizId].isAttempted = true;
+  }
+
+  quizAnswerSaving(String selectedAnswerId, int qesId, int quizId) {
+    _selectedSubjectByid.quiz[quizId].questions[qesId].stdnswer =
+        selectedAnswerId;
+    quizCheckAllSelected(quizId);
+  }
+
+  quizAnswerRemoving(String selectedAnswerId, int qesId, int quizId) {
+    _selectedSubjectByid.quiz[quizId].questions[qesId].stdnswer = '';
+    quizCheckAllSelected(quizId);
+  }
+
+  bool allSelected = false;
+  bool quizCheckAllSelected(int quizId) {
+    allSelected = _selectedSubjectByid.quiz[quizId].questions
+        .every((e) => e.stdnswer != '');
+    notifyListeners();
+    return allSelected;
+  }
+
+  List<int> quizCalc(int quizId) {
+    int res = 0;
+    int total = 0;
+    _selectedSubjectByid.quiz[quizId].questions.map((e) {
+      total += int.parse(e.degree);
+    }).toList();
+    _selectedSubjectByid.quiz[quizId].questions.map((e) {
+      if (e.ans == e.stdnswer) res += int.parse(e.degree);
+    }).toList();
+    allSelected = false;
+    return [res, total];
   }
 }

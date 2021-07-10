@@ -24,16 +24,16 @@ class _MainDrawerState extends State<MainDrawer> {
           SafeArea(
             child: Container(
               width: 250,
-             // padding: EdgeInsets.all(8),
+              // padding: EdgeInsets.all(8),
               child: ListView(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: CircleAvatar(
-                      radius: 40,
-                      backgroundImage: NetworkImage(user.image ?? ''),
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(top: 10),
+                  //   child: CircleAvatar(
+                  //     radius: 40,
+                  //     backgroundImage: NetworkImage(user.image ?? ''),
+                  //   ),
+                  // ),
                   SizedBox(
                     height: 10,
                   ),
@@ -74,17 +74,18 @@ class _MainDrawerState extends State<MainDrawer> {
                     height: 10,
                   ),
                   customDrawerItem(themeMode, context, () {
-                    Navigator.of(context).pushReplacementNamed(MyHome.routeName);
+                    Navigator.of(context)
+                        .pushReplacementNamed(MyHome.routeName);
                   }, Icons.home, 'Home'),
                   customDrawerItem(themeMode, context, () {
                     Navigator.pushNamed(context, '/std');
                   }, Icons.person, 'Student Info'),
-                  customDrawerItem(
-                      themeMode, context, () {}, Icons.table_view, 'Study Timetable'),
-                  customDrawerItem(
-                      themeMode, context, () {}, Icons.description, 'Academic Results'),
-                  customDrawerItem(
-                      themeMode, context, () {}, Icons.menu_book_sharp, 'Courses'),
+                  customDrawerItem(themeMode, context, () {}, Icons.table_view,
+                      'Study Timetable'),
+                  customDrawerItem(themeMode, context, () {}, Icons.description,
+                      'Academic Results'),
+                  customDrawerItem(themeMode, context, () {},
+                      Icons.menu_book_sharp, 'Courses'),
                   customDrawerItem(themeMode, context, () {},
                       Icons.notification_important_outlined, 'Notification'),
                   customDrawerItem(themeMode, context, () {
@@ -107,20 +108,20 @@ class _MainDrawerState extends State<MainDrawer> {
                     ..setEntry(3, 2, 0.001)
                     ..setEntry(0, 3, 200 * val)
                     ..rotateY(
-                      (pi / 3* val),
+                      (pi / 3 * val),
                     ),
                   child: MyHome(),
                 ));
               }),
           GestureDetector(
-            onHorizontalDragUpdate: (e){
-              if(e.delta.dx > 0 ){
+            onHorizontalDragUpdate: (e) {
+              if (e.delta.dx > 0) {
                 setState(() {
-                  value =1 ;
+                  value = 1;
                 });
-              }else{
+              } else {
                 setState(() {
-                  value = 0 ;
+                  value = 0;
                 });
               }
             },

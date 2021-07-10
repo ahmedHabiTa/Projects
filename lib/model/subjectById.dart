@@ -126,6 +126,7 @@ class Quiz {
   final DateTime timestamps;
   final String name;
   final List<Question> questions;
+  bool isAttempted = false;
 
   factory Quiz.fromJson(Map<String, dynamic> json) => Quiz(
         id: json["id"] == null ? null : json["id"],
@@ -162,10 +163,11 @@ class Question {
   final String id;
   final DateTime timestamps;
   final String ques;
-  final String choises;
+  String choises;
   final String ans;
   final String degree;
-
+  List<String> choisesList = [];
+  String stdnswer = '';
   factory Question.fromJson(Map<String, dynamic> json) => Question(
         id: json["id"] == null ? null : json["id"],
         timestamps: json["timestamps"] == null

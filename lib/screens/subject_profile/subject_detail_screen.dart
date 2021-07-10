@@ -25,6 +25,8 @@ class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final subjectHasDataState =
+        Provider.of<SubjectsProvider>(context).subjectHasDataState;
     return Scaffold(
         appBar: AppBar(
           elevation: 0.0,
@@ -33,28 +35,32 @@ class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
             style: Theme.of(context).textTheme.headline6,
           ),
         ),
-        body: SingleChildScrollView(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            _buildCard("Quiz", "images/quiz.png", () {
-              Navigator.of(context).pushNamed(
-                ALLQuizzesScreen.routeName,
-              );
-            }),
-            _buildCard("Reports", "images/report.png", () {
-              Navigator.of(context).pushNamed(
-                Reports.routeName,
-              );
-            }),
-            _buildCard("Banks", "images/ask-question.png", () {
-              Navigator.of(context).pushNamed(
-                Banks.routeName,
-              );
-            }),
-          ],
-        )));
+        body: !subjectHasDataState
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : SingleChildScrollView(
+                child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  _buildCard("Quiz", "images/quiz.png", () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (ctx) => ALLQuizzesScreen(),
+                    ));
+                  }),
+                  _buildCard("Reports", "images/report.png", () {
+                    Navigator.of(context).pushNamed(
+                      Reports.routeName,
+                    );
+                  }),
+                  _buildCard("Banks", "images/ask-question.png", () {
+                    Navigator.of(context).pushNamed(
+                      Banks.routeName,
+                    );
+                  }),
+                ],
+              )));
   }
 
   Widget _buildCard(String title, image, Function function) {

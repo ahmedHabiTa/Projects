@@ -10,7 +10,7 @@ import '../subject_profile/subjects_screen.dart';
 import '../../widgets/main_drawer.dart';
 
 class MyHome extends StatelessWidget {
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   static const routeName = 'My_home';
   @override
   Widget build(BuildContext context) {
