@@ -1,88 +1,130 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:triple_s_project/providers/theme_provider.dart';
 import '../providers/auth.dart';
 import '../screens/home/home_page.dart';
 
-class MainDrawer extends StatelessWidget {
+class MainDrawer extends StatefulWidget {
+  @override
+  _MainDrawerState createState() => _MainDrawerState();
+}
+
+class _MainDrawerState extends State<MainDrawer> {
+  double value = 0;
+
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<Auth>(context).user;
     var themeMode = Provider.of<ThemeProvider>(context).tm;
-    return Drawer(
-      elevation: 0,
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: <Widget>[
-          SizedBox(
-            height: 10,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: CircleAvatar(
-              radius: 80,
-              backgroundImage: NetworkImage(user.image ?? ''),
+    return Scaffold(
+      body: Stack(
+        children: [
+          SafeArea(
+            child: Container(
+              width: 250,
+             // padding: EdgeInsets.all(8),
+              child: ListView(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: CircleAvatar(
+                      radius: 40,
+                      backgroundImage: NetworkImage(user.image ?? ''),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    user.name,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w300,
+                      height: 0.2,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    user.department,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w300,
+                      height: 0.2,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    user.grade,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w300,
+                      height: 0.2,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  customDrawerItem(themeMode, context, () {
+                    Navigator.of(context).pushReplacementNamed(MyHome.routeName);
+                  }, Icons.home, 'Home'),
+                  customDrawerItem(themeMode, context, () {
+                    Navigator.pushNamed(context, '/std');
+                  }, Icons.person, 'Student Info'),
+                  customDrawerItem(
+                      themeMode, context, () {}, Icons.table_view, 'Study Timetable'),
+                  customDrawerItem(
+                      themeMode, context, () {}, Icons.description, 'Academic Results'),
+                  customDrawerItem(
+                      themeMode, context, () {}, Icons.menu_book_sharp, 'Courses'),
+                  customDrawerItem(themeMode, context, () {},
+                      Icons.notification_important_outlined, 'Notification'),
+                  customDrawerItem(themeMode, context, () {
+                    Navigator.pushNamed(context, '/settings');
+                  }, Icons.settings, 'Settings'),
+                  customDrawerItem(themeMode, context, () async {
+                    await Provider.of<Auth>(context, listen: false).logout();
+                  }, Icons.logout, 'Log out'),
+                ],
+              ),
             ),
           ),
-          SizedBox(
-            height: 10,
+          TweenAnimationBuilder(
+              tween: Tween<double>(begin: 0, end: value),
+              duration: Duration(milliseconds: 500),
+              builder: (_, double val, __) {
+                return (Transform(
+                  alignment: Alignment.center,
+                  transform: Matrix4.identity()
+                    ..setEntry(3, 2, 0.001)
+                    ..setEntry(0, 3, 200 * val)
+                    ..rotateY(
+                      (pi / 3* val),
+                    ),
+                  child: MyHome(),
+                ));
+              }),
+          GestureDetector(
+            onHorizontalDragUpdate: (e){
+              if(e.delta.dx > 0 ){
+                setState(() {
+                  value =1 ;
+                });
+              }else{
+                setState(() {
+                  value = 0 ;
+                });
+              }
+            },
           ),
-          Text(
-            user.name,
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w300,
-              height: 0.2,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Text(
-            user.department,
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w300,
-              height: 0.2,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Text(
-            user.grade,
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w300,
-              height: 0.2,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          customDrawerItem(themeMode, context, () {
-            Navigator.of(context).pushReplacementNamed(MyHome.routeName);
-          }, Icons.home, 'Home'),
-          customDrawerItem(themeMode, context, () {
-            Navigator.pushNamed(context, '/std');
-          }, Icons.person, 'Student Info'),
-          customDrawerItem(
-              themeMode, context, () {}, Icons.table_view, 'Study Timetable'),
-          customDrawerItem(
-              themeMode, context, () {}, Icons.description, 'Academic Results'),
-          customDrawerItem(
-              themeMode, context, () {}, Icons.menu_book_sharp, 'Courses'),
-          customDrawerItem(themeMode, context, () {},
-              Icons.notification_important_outlined, 'Notification'),
-          customDrawerItem(themeMode, context, () {
-            Navigator.pushNamed(context, '/settings');
-          }, Icons.settings, 'Settings'),
-          customDrawerItem(themeMode, context, () async {
-            await Provider.of<Auth>(context, listen: false).logout();
-          }, Icons.logout, 'Log out'),
         ],
       ),
     );
