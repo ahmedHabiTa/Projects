@@ -24,16 +24,16 @@ dependencies:
   flutter:
     sdk: flutter
   animated_splash_screen: null
-  carousel_slider: null
+  carousel_slider:
   cupertino_icons: null
   flutter_colorpicker: null
   flutter_spinkit: ^4.1.2+1
   fluttertoast: 7.1.6
   http: null
   provider: null
-  shared_preferences: 0.5.12+4
+  shared_preferences: ^2.0.6
   simple_animations: ^1.3.3
-  url_launcher: null
+  url_launcher: ^6.0.9
   webview_flutter:
 
 dev_dependencies:
