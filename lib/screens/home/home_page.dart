@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'package:triple_s_project/widgets/auto_slider.dart';
-import 'package:triple_s_project/widgets/head_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../providers/auth.dart';
 import 'results.dart';
@@ -69,7 +68,7 @@ class ElearingGrid extends StatelessWidget {
     final user = Provider.of<Auth>(context).user;
 
     return Container(
-        height: deviceSize.height * .5,
+        height: deviceSize.height * 0.55,
         child: GridView.count(
           physics: NeverScrollableScrollPhysics(),
           crossAxisCount: 2,
@@ -102,7 +101,7 @@ class ElearingGrid extends StatelessWidget {
                               table: user.table,
                             )));
               },
-            )
+            ),
           ],
         ));
   }
