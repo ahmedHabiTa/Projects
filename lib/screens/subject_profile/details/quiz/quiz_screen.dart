@@ -185,7 +185,7 @@ class _AnswerWidgetState extends State<AnswerWidget> {
                       tag: widget.answer + widget.number,
                       child: CircleAvatar(
                           child: Text(widget.number),
-                          backgroundColor: Colors.pink)),
+                          backgroundColor: Colors.blueAccent)),
                   title: Text(
                     widget.answer,
                     style: TextStyle(color: Colors.black),
@@ -197,7 +197,7 @@ class _AnswerWidgetState extends State<AnswerWidget> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25.0)),
               elevation: 6.0,
-              color: Colors.pink,
+              color: Colors.blueAccent,
               margin: EdgeInsets.all(15.0),
               child: ListTile(
                   leading: SizedBox(),
@@ -205,7 +205,7 @@ class _AnswerWidgetState extends State<AnswerWidget> {
                       tag: widget.answer + widget.number,
                       child: CircleAvatar(
                           child: Icon(Icons.cancel_outlined,
-                              size: 30, color: Colors.pink),
+                              size: 30, color: Colors.blueAccent),
                           backgroundColor: Colors.white)),
                   title: Text(
                     widget.answer,
