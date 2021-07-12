@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'package:triple_s_project/widgets/auto_slider.dart';
+import 'package:triple_s_project/widgets/head_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../providers/auth.dart';
 import 'results.dart';
@@ -24,7 +25,7 @@ class MyHome extends StatelessWidget {
           Expanded(
               child: SingleChildScrollView(
                   child: Column(children: [
-            Text("Grow Your own Skill \n  by Online Learing",
+            Text("Grow Your own Skill \n  by Online Learning",
                 style: TextStyle(fontSize: 22)),
             HeadLine("News"),
             CarouselWithIndicator(),
@@ -68,7 +69,7 @@ class ElearingGrid extends StatelessWidget {
     final user = Provider.of<Auth>(context).user;
 
     return Container(
-        height: deviceSize.height * 0.55,
+        height: deviceSize.height * .25,
         child: GridView.count(
           physics: NeverScrollableScrollPhysics(),
           crossAxisCount: 2,
@@ -79,20 +80,10 @@ class ElearingGrid extends StatelessWidget {
                 Navigator.of(context).pushNamed(AllSubject.routeName);
               },
             ),
+            
+           
             _buildHomeCard(
-              'Online Session',
-              () {
-                Navigator.pushNamed(context, '/online');
-              },
-            ),
-            _buildHomeCard(
-              'Exams',
-              () {
-                Navigator.pushNamed(context, '/Exams Tables');
-              },
-            ),
-            _buildHomeCard(
-              'Final Results',
+              'Table',
               () {
                 Navigator.push(
                     context,
@@ -101,7 +92,7 @@ class ElearingGrid extends StatelessWidget {
                               table: user.table,
                             )));
               },
-            ),
+            )
           ],
         ));
   }
@@ -122,7 +113,7 @@ class ElearingGrid extends StatelessWidget {
                 children: <Widget>[
                   Icon(
                     Icons.text_snippet,
-                    color: Colors.pink,
+                    color: Colors.blueAccent,
                     size: 55,
                   ),
                   Text(title,
@@ -187,7 +178,7 @@ class WebSitesGrid extends StatelessWidget {
                 children: <Widget>[
                   Icon(
                     Icons.text_snippet,
-                    color: Colors.pink,
+                    color: Colors.blueAccent,
                     size: 55,
                   ),
                   Text(title,
