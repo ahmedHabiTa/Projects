@@ -74,7 +74,7 @@ class AttemptDialog extends StatelessWidget {
             actions: [
               FlatButton(
                 child: Text("OK",
-                    style: TextStyle(color: Colors.pink, fontSize: 22)),
+                    style: TextStyle(color: Colors.blueAccent, fontSize: 22)),
                 onPressed: () {
                   Navigator.of(context).pop(context);
                 },
@@ -87,12 +87,12 @@ class AttemptDialog extends StatelessWidget {
               Container(
                   padding: EdgeInsets.all(32),
                   child: Text('You Have Already Attended This Quiz',
-                      style: TextStyle(color: Colors.pink, fontSize: 18))),
+                      style: TextStyle(color: Colors.blueAccent, fontSize: 18))),
             ]),
             title: Center(
                 child: FittedBox(
                     fit: BoxFit.cover,
                     child: Text("Sorry :-",
-                        style: TextStyle(color: Colors.pink, fontSize: 30))))));
+                        style: TextStyle(color: Colors.redAccent, fontSize: 30))))));
   }
 }
