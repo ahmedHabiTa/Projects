@@ -46,21 +46,28 @@ class ALLQuizzesScreen extends StatelessWidget {
         child: Card(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0)),
-          elevation: 6.0,
-          color: Colors.white54,
+          elevation: 2.0,
+          color: Colors.white,
           margin: EdgeInsets.all(15.0),
-          child: Center(
-            child: ListTile(
+          child: Column(children: [
+            ListTile(
               contentPadding:
                   EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
               onTap: function,
               leading: Icon(icon,
                   size: 30, color: q.isAttempted ? Colors.red : Colors.green),
+              subtitle: Text(
+                  "${q.timestamps.day.toString()}-${q.timestamps.month.toString().padLeft(2, '0')}-${q.timestamps.day.toString().padLeft(2, '0')}",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 10.0,
+                      fontFamily: 'Satisfy')),
               title: Text(q.name,
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 20.0, fontFamily: 'Satisfy')),
             ),
-          ),
+          ]),
         ));
   }
 }
@@ -87,12 +94,14 @@ class AttemptDialog extends StatelessWidget {
               Container(
                   padding: EdgeInsets.all(32),
                   child: Text('You Have Already Attended This Quiz',
-                      style: TextStyle(color: Colors.blueAccent, fontSize: 18))),
+                      style:
+                          TextStyle(color: Colors.blueAccent, fontSize: 18))),
             ]),
             title: Center(
                 child: FittedBox(
                     fit: BoxFit.cover,
                     child: Text("Sorry :-",
-                        style: TextStyle(color: Colors.redAccent, fontSize: 30))))));
+                        style: TextStyle(
+                            color: Colors.redAccent, fontSize: 30))))));
   }
 }

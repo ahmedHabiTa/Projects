@@ -1,17 +1,17 @@
 class SubjectsResponse {
   String status;
   String message;
-  List<Subject> data;
+  List<Subject> subject;
 
-  SubjectsResponse({this.status, this.message, this.data});
+  SubjectsResponse({this.status, this.message, this.subject});
 
   SubjectsResponse.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
     if (json['data'] != null) {
-      data = new List<Subject>();
+      subject = new List<Subject>();
       json['data'].forEach((v) {
-        data.add(new Subject.fromJson(v));
+        subject.add(new Subject.fromJson(v));
       });
     }
   }
@@ -20,8 +20,8 @@ class SubjectsResponse {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['status'] = this.status;
     data['message'] = this.message;
-    if (this.data != null) {
-      data['data'] = this.data.map((v) => v.toJson()).toList();
+    if (this.subject != null) {
+      data['data'] = this.subject.map((v) => v.toJson()).toList();
     }
     return data;
   }

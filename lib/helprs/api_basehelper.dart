@@ -25,7 +25,8 @@ class ApiBaseHelper {
   Future<dynamic> post(String url, Map<String, dynamic> body) async {
     var responseJson;
     try {
-      final response = await http.post(Uri.parse(_baseUrl + url),
+      final response = await http.post(
+        Uri.parse(_baseUrl + url),
         body: json.encode(body),
       );
       responseJson = _returnResponse(response);
@@ -34,16 +35,17 @@ class ApiBaseHelper {
     }
     return responseJson;
   }
+
   Future<int> uploadAssignment(
       {@required String subjectId,
-        @required String assignmentId,
-        @required String professorId,
-        @required String filePath}) async {
+      @required String assignmentId,
+      @required String professorId,
+      @required String filePath}) async {
     final SharedPreferences sharedPreferences =
-    await SharedPreferences.getInstance();
-    final user = User.fromJson(json.decode(sharedPreferences.get(USERSHAERED)));
+        await SharedPreferences.getInstance();
+    final userToken = sharedPreferences.get(USERSHAERED);
     var request = http.MultipartRequest(
-        'POST', Uri.parse(_baseUrl + AssignmentFile + user.token))
+        'POST', Uri.parse(_baseUrl + AssignmentFile + userToken))
       ..fields['subject_id'] = subjectId
       ..fields['professor_id'] = professorId
       ..fields['assignment_id'] = assignmentId;
@@ -54,6 +56,7 @@ class ApiBaseHelper {
     print(resData);
     return res.statusCode;
   }
+
   dynamic _returnResponse(http.Response response) {
     switch (response.statusCode) {
       case 200:

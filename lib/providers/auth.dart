@@ -71,9 +71,6 @@ class Auth extends ChangeNotifier {
     }
   }
 
-
-
-
   /// دي الليست الي هتسخدميها في عرض مواد اليوم
   List<TableSubject> selectedSubjects = [];
 

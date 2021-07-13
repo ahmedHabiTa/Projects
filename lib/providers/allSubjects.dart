@@ -25,7 +25,7 @@ class SubjectsProvider extends ChangeNotifier {
           User.fromJson(json.decode(sharedPreferences.get(USERSHAERED)));
       final response = await _helper.get(SUJECTS + user.token);
       subjectsResponse = SubjectsResponse.fromJson(response);
-      _subjects = subjectsResponse.data;
+      _subjects = subjectsResponse.subject;
       notifyListeners();
     } catch (e) {
       throw e;
@@ -65,6 +65,7 @@ class SubjectsProvider extends ChangeNotifier {
 
   attemptQuiz(int quizId) {
     _selectedSubjectByid.quiz[quizId].isAttempted = true;
+    notifyListeners();
   }
 
   quizAnswerSaving(String selectedAnswerId, int qesId, int quizId) {
@@ -86,12 +87,17 @@ class SubjectsProvider extends ChangeNotifier {
     return allSelected;
   }
 
-  List<int> quizCalc(int quizId) {
-    int res = 0;
+  int quizCalcTotal(int quizId) {
     int total = 0;
     _selectedSubjectByid.quiz[quizId].questions.map((e) {
       total += int.parse(e.degree);
     }).toList();
+    return total;
+  }
+
+  List<int> quizCalc(int quizId) {
+    int res = 0;
+    int total = quizCalcTotal(quizId);
     _selectedSubjectByid.quiz[quizId].questions.map((e) {
       if (e.ans == e.stdnswer) res += int.parse(e.degree);
     }).toList();

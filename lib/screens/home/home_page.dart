@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'package:triple_s_project/widgets/auto_slider.dart';
-import 'package:triple_s_project/widgets/head_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../providers/auth.dart';
 import 'results.dart';
@@ -25,12 +24,18 @@ class MyHome extends StatelessWidget {
           Expanded(
               child: SingleChildScrollView(
                   child: Column(children: [
-            Text("Grow Your own Skill \n  by Online Learning",
-                style: TextStyle(fontSize: 22)),
+            Padding(
+              child: Text("Grow Your own Skill \n  by Online Learning",
+                  style: TextStyle(fontSize: 22)),
+              padding: EdgeInsets.all(8),
+            ),
+            Divider(color: Colors.blueAccent),
             HeadLine("News"),
             CarouselWithIndicator(),
+            Divider(color: Colors.blueAccent),
             HeadLine("E-learning"),
             ElearingGrid(),
+            Divider(color: Colors.blueAccent),
             HeadLine("Web Sites"),
             WebSitesGrid()
           ])))
@@ -52,7 +57,8 @@ class HeadLine extends StatelessWidget {
               height: 10,
               width: 10,
               decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(5))),
+                  color: Colors.blueAccent,
+                  borderRadius: BorderRadius.circular(5))),
           Padding(
               padding: EdgeInsets.symmetric(horizontal: 8),
               child: Text(text, style: TextStyle(fontSize: 22)))
@@ -80,8 +86,6 @@ class ElearingGrid extends StatelessWidget {
                 Navigator.of(context).pushNamed(AllSubject.routeName);
               },
             ),
-            
-           
             _buildHomeCard(
               'Table',
               () {

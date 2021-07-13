@@ -4,6 +4,7 @@ import 'package:triple_s_project/model/subjects.dart';
 import 'package:triple_s_project/providers/allSubjects.dart';
 import 'package:triple_s_project/screens/subject_profile/details/quiz/res_dialog.dart';
 import '../../../../model/subjectById.dart';
+import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 
 class QuizScreen extends StatefulWidget {
   final Quiz quiz;
@@ -17,13 +18,26 @@ class QuizScreen extends StatefulWidget {
 class _QuizScreenState extends State<QuizScreen> {
   final Quiz quiz;
   final int quizId;
+  int total;
+  int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 300;
+  _QuizScreenState(this.quiz, this.quizId);
+
+  void onEnd() {
+    final res =
+        Provider.of<SubjectsProvider>(context, listen: false).quizCalc(quizId);
+    Navigator.of(context).pop(context);
+    showDialog(
+        context: context, builder: (ctx) => ResDialog(res: 0, total: total));
+  }
+
   @override
   void initState() {
     super.initState();
     Provider.of<SubjectsProvider>(context, listen: false).attemptQuiz(quizId);
+    total = Provider.of<SubjectsProvider>(context, listen: false)
+        .quizCalcTotal(quizId);
   }
 
-  _QuizScreenState(this.quiz, this.quizId);
   @override
   Widget build(BuildContext context) {
     bool allSelected = Provider.of<SubjectsProvider>(context).allSelected;
@@ -53,24 +67,29 @@ class _QuizScreenState extends State<QuizScreen> {
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text("Quiz Degree : 5"),
-                      Text("Quiz Time : 15 m")
+                      Text("Quiz Degree : $total"),
+                      CountdownTimer(
+                        onEnd: onEnd,
+                        endTime: endTime,
+                      ),
                     ])),
             Divider(
               color: Colors.grey,
             ),
             Expanded(
-                child: ListView.builder(
-              itemCount: quiz.questions.length,
-              itemBuilder: (ctx, i) => QuestionWidget(
-                  quiezId: quizId,
-                  q: quiz.questions[i],
-                  qNum: (i + 1).toString()),
-            )),
+                child: SingleChildScrollView(
+                    child: Column(
+                        children: quiz.questions
+                            .map((e) => QuestionWidget(
+                                quiezId: quizId,
+                                q: e,
+                                qNum:
+                                    (quiz.questions.indexOf(e) + 1).toString()))
+                            .toList()))),
             Container(
                 width: double.infinity,
                 height: 75,
-                color: allSelected ? Colors.pink : Colors.grey,
+                color: allSelected ? Colors.blueAccent : Colors.grey,
                 child: FlatButton(
                   child: Text(allSelected ? "Submit" : "Answer All Questions",
                       style: Theme.of(context).textTheme.bodyText2),
@@ -109,51 +128,46 @@ class _QuestionWidgetState extends State<QuestionWidget> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    return Container(
-        height: size.height * .45,
-        child: Column(
-          children: [
-            Padding(
-                padding: EdgeInsets.all(8),
-                child:
-                    Row(children: [Text(widget.qNum + ' . '), Text(q.ques)])),
-            Expanded(
-                child: ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    itemCount: q.choisesList.length,
-                    itemBuilder: (ctx, i) => GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            if (selectedAnswer == i.toString()) {
-                              selectedAnswer = '';
-                              Provider.of<SubjectsProvider>(context,
-                                      listen: false)
-                                  .quizAnswerRemoving(
-                                      (i + 1).toString(),
-                                      int.parse(widget.qNum) - 1,
-                                      widget.quiezId);
-                            } else {
-                              selectedAnswer = i.toString();
-                              Provider.of<SubjectsProvider>(context,
-                                      listen: false)
-                                  .quizAnswerSaving(
-                                (i + 1).toString(),
-                                int.parse(widget.qNum) - 1,
-                                widget.quiezId,
-                              );
-                            }
-                          });
-                        },
-                        child: AnswerWidget(
-                          answer: q.choisesList[i],
-                          isSelected: selectedAnswer != i.toString(),
-                          number: (i + 1).toString(),
-                        )))),
-            Divider(
-              color: Colors.grey,
-            )
-          ],
-        ));
+    return Column(
+      children: [
+        Container(
+          padding: EdgeInsets.all(8),
+          child: Text(widget.qNum + ' . ' + q.ques),
+        ),
+        Column(
+            children: q.choisesList
+                .map((e) => GestureDetector(
+                    onTap: () {
+                      int i = q.choisesList.indexOf(e);
+                      setState(() {
+                        if (selectedAnswer == i.toString()) {
+                          selectedAnswer = '';
+                          Provider.of<SubjectsProvider>(context, listen: false)
+                              .quizAnswerRemoving((i + 1).toString(),
+                                  int.parse(widget.qNum) - 1, widget.quiezId);
+                        } else {
+                          selectedAnswer = i.toString();
+                          Provider.of<SubjectsProvider>(context, listen: false)
+                              .quizAnswerSaving(
+                            (i + 1).toString(),
+                            int.parse(widget.qNum) - 1,
+                            widget.quiezId,
+                          );
+                        }
+                      });
+                    },
+                    child: AnswerWidget(
+                      answer: e,
+                      isSelected:
+                          selectedAnswer != q.choisesList.indexOf(e).toString(),
+                      number: (q.choisesList.indexOf(e) + 1).toString(),
+                    )))
+                .toList()),
+        Divider(
+          color: Colors.grey,
+        )
+      ],
+    );
   }
 }
 
@@ -181,11 +195,9 @@ class _AnswerWidgetState extends State<AnswerWidget> {
               color: Colors.white,
               margin: EdgeInsets.all(15.0),
               child: ListTile(
-                  leading: Hero(
-                      tag: widget.answer + widget.number,
-                      child: CircleAvatar(
-                          child: Text(widget.number),
-                          backgroundColor: Colors.blueAccent)),
+                  leading: CircleAvatar(
+                      child: Text(widget.number),
+                      backgroundColor: Colors.blueAccent),
                   title: Text(
                     widget.answer,
                     style: TextStyle(color: Colors.black),
@@ -201,12 +213,10 @@ class _AnswerWidgetState extends State<AnswerWidget> {
               margin: EdgeInsets.all(15.0),
               child: ListTile(
                   leading: SizedBox(),
-                  trailing: Hero(
-                      tag: widget.answer + widget.number,
-                      child: CircleAvatar(
-                          child: Icon(Icons.cancel_outlined,
-                              size: 30, color: Colors.blueAccent),
-                          backgroundColor: Colors.white)),
+                  trailing: CircleAvatar(
+                      child: Icon(Icons.cancel_outlined,
+                          size: 30, color: Colors.blueAccent),
+                      backgroundColor: Colors.white),
                   title: Text(
                     widget.answer,
                     style: TextStyle(color: Colors.white),

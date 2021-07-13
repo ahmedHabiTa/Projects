@@ -48,7 +48,6 @@ class User {
     @required this.grade,
     @required this.groupId,
     @required this.gender,
-    @required this.birthDate,
     @required this.religion,
     @required this.nationality,
     @required this.birthPlace,
@@ -78,7 +77,6 @@ class User {
   final String grade;
   final String groupId;
   final String gender;
-  final DateTime birthDate;
   final String religion;
   final String nationality;
   final String birthPlace;
@@ -110,9 +108,6 @@ class User {
         grade: json["grade"] == null ? null : json["grade"],
         groupId: json["group_id"] == null ? null : json["group_id"],
         gender: json["gender"] == null ? null : json["gender"],
-        birthDate: json["birth_date"] == null
-            ? null
-            : DateTime.parse(json["birth_date"]),
         religion: json["religion"] == null ? null : json["religion"],
         nationality: json["nationality"] == null ? null : json["nationality"],
         birthPlace: json["birth_place"] == null ? null : json["birth_place"],
@@ -151,9 +146,6 @@ class User {
         "grade": grade == null ? null : grade,
         "group_id": groupId == null ? null : groupId,
         "gender": gender == null ? null : gender,
-        "birth_date": birthDate == null
-            ? null
-            : "${birthDate.year.toString().padLeft(4, '0')}-${birthDate.month.toString().padLeft(2, '0')}-${birthDate.day.toString().padLeft(2, '0')}",
         "religion": religion == null ? null : religion,
         "nationality": nationality == null ? null : nationality,
         "birth_place": birthPlace == null ? null : birthPlace,

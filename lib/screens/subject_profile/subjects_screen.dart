@@ -43,8 +43,8 @@ class _AllSubjectState extends State<AllSubject> {
                           child: Card(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(25.0)),
-                            elevation: 6.0,
-                            color: Colors.white54,
+                            elevation: 2.0,
+                            color: Colors.white,
                             margin: EdgeInsets.all(15.0),
                             child: ListTile(
                               contentPadding: EdgeInsets.symmetric(

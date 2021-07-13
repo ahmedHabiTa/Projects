@@ -53,7 +53,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
                       borderRadius: BorderRadius.circular(8),
                       color: _current == widgets.indexOf(e)
                           ? Colors.blue
-                          : Colors.white),
+                          : Colors.grey),
                 ),
               )
               .toList()),
@@ -93,7 +93,8 @@ class SliderItem extends StatelessWidget {
                   alignment: Alignment.bottomCenter,
                   child: Container(
                     alignment: Alignment.center,
-                    child: Text(text, style: TextStyle(fontSize: 12)),
+                    child: Text(text,
+                        style: TextStyle(fontSize: 14, color: Colors.white)),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(30),
