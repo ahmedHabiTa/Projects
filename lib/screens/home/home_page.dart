@@ -11,15 +11,16 @@ import '../../widgets/main_drawer.dart';
 class MyHome extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   static const routeName = 'My_home';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          leading: Icon(Icons.menu),
           title: Text("Home"),
           elevation: 0,
         ),
         key: scaffoldKey,
-        drawer: MainDrawer(),
         body: Column(children: [
           Expanded(
               child: SingleChildScrollView(
@@ -41,6 +42,7 @@ class HeadLine extends StatelessWidget {
   final String text;
 
   const HeadLine(this.text);
+
   @override
   Widget build(BuildContext context) {
     return Padding(

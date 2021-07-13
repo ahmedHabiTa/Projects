@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:triple_s_project/screens/auth/login_screen.dart';
+import 'package:triple_s_project/widgets/main_drawer.dart';
 import 'providers/allSubjects.dart';
 import 'providers/auth.dart';
 import 'providers/theme_provider.dart';
@@ -89,6 +90,7 @@ class MyApp extends StatelessWidget {
         AllSubject.routeName: (context) => AllSubject(),
         SubjectDetailScreen.routeName: (context) => SubjectDetailScreen(),
         Banks.routeName: (context) => Banks(),
+        MainDrawer.routeName: (context) => MainDrawer(),
       },
       home: Consumer<Auth>(
           builder: (context, auth, child) => FutureBuilder<bool>(
