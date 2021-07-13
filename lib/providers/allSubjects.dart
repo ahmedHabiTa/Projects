@@ -11,6 +11,7 @@ import 'package:triple_s_project/model/user.dart';
 class SubjectsProvider extends ChangeNotifier {
   final _helper = Constant.helper;
   SubjectsResponse subjectsResponse;
+
   List<Subject> _subjects = [];
   List<Subject> get subjects {
     return _subjects;
@@ -37,6 +38,7 @@ class SubjectsProvider extends ChangeNotifier {
   }
 
   bool subjectHasDataState = false;
+
   Future<void> getSubjectById({String id}) async {
     try {
       _selectedSubjectByid = null;

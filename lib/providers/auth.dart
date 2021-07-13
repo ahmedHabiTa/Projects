@@ -8,7 +8,7 @@ import 'package:triple_s_project/model/user.dart';
 
 class Auth extends ChangeNotifier {
   final _helper = Constant.helper;
-  UserRes _logInResponse;
+  AuthResponse _logInResponse;
   User _user;
   User get user {
     return _user;
@@ -20,7 +20,7 @@ class Auth extends ChangeNotifier {
           await SharedPreferences.getInstance();
       final response = await _helper.post(LOGINURL,
           {"national_id": nId, "faculty_id": fId, "FCM_token": "1234242456"});
-      _logInResponse = UserRes.fromJson(response);
+      _logInResponse = AuthResponse.fromJson(response);
       if (_logInResponse.status == PASS) {
         _user = _logInResponse.user;
         sharedPreferences.setString(USERSHAERED, json.encode(_user.toJson()));
