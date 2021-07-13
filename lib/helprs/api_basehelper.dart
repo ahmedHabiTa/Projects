@@ -1,10 +1,16 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:triple_s_project/model/user.dart';
+
+import 'end_points.dart';
 
 class ApiBaseHelper {
   final String _baseUrl = "http://www.trpls.co/api/";
+
   Future<dynamic> get(String url) async {
     var responseJson;
     try {
@@ -28,7 +34,26 @@ class ApiBaseHelper {
     }
     return responseJson;
   }
-
+  Future<int> uploadAssignment(
+      {@required String subjectId,
+        @required String assignmentId,
+        @required String professorId,
+        @required String filePath}) async {
+    final SharedPreferences sharedPreferences =
+    await SharedPreferences.getInstance();
+    final user = User.fromJson(json.decode(sharedPreferences.get(USERSHAERED)));
+    var request = http.MultipartRequest(
+        'POST', Uri.parse(_baseUrl + AssignmentFile + user.token))
+      ..fields['subject_id'] = subjectId
+      ..fields['professor_id'] = professorId
+      ..fields['assignment_id'] = assignmentId;
+    request.files.add(await http.MultipartFile.fromPath('file', filePath));
+    var res = await request.send();
+    var resData = await res.stream.bytesToString();
+    print(res.statusCode);
+    print(resData);
+    return res.statusCode;
+  }
   dynamic _returnResponse(http.Response response) {
     switch (response.statusCode) {
       case 200:

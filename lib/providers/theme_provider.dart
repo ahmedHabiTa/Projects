@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeProvider with ChangeNotifier {
-  var primaryColor = Colors.pink;
+  var primaryColor = Colors.blue[200];
   var accentColor = Colors.amber;
 
   var tm = ThemeMode.system;
@@ -21,7 +21,7 @@ class ThemeProvider with ChangeNotifier {
   getThemeColors() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    primaryColor = _toMaterialColor(prefs.getInt("primaryColor") ?? 0xFFE91E63);
+    primaryColor = _toMaterialColor(prefs.getInt("primaryColor") ?? 0xFF90CAE9);
     accentColor = _toMaterialColor(prefs.getInt("accentColor") ?? 0xFFFFC107);
     notifyListeners();
   }
@@ -30,16 +30,16 @@ class ThemeProvider with ChangeNotifier {
     return MaterialColor(
       colorVal,
       <int, Color>{
-        50: Color(0xFFFCE4EC),
-        100: Color(0xFFF8BBD0),
-        200: Color(0xFFF48FB1),
-        300: Color(0xFFF06292),
-        400: Color(0xFFEC407A),
+        50: Color(0xFFE3F2FD),
+        100: Color(0xFFBBDEFB),
+        200: Color(0xFF90CAF9),
+        300: Color(0xFF64B5F6),
+        400: Color(0xFF42A5F5),
         500: Color(colorVal),
-        600: Color(0xFFD81B60),
-        700: Color(0xFFC2185B),
-        800: Color(0xFFAD1457),
-        900: Color(0xFF880E4F),
+        600: Color(0xFF1E88E5),
+        700: Color(0xFF1976D2),
+        800: Color(0xFF1565C0),
+        900: Color(0xFF0D47A1),
       },
     );
   }
@@ -56,6 +56,7 @@ class ThemeProvider with ChangeNotifier {
   _getThemeText(ThemeMode tm) {
     if (tm == ThemeMode.dark)
       themeText = "d";
+
     else if (tm == ThemeMode.light)
       themeText = "l";
     else if (tm == ThemeMode.system) themeText = "s";

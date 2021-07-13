@@ -13,60 +13,209 @@ class _StudentState extends State<StudentInfo> {
     final user = Provider.of<Auth>(context).user;
     return Scaffold(
       appBar: AppBar(
-          title: Text(
-            'Student information',
-            style: Theme.of(context).textTheme.headline6,
-            textAlign: TextAlign.center,
-          )),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        color: Colors.blue[300],
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Theme.of(context).canvasColor,
-                ),
-                margin: EdgeInsets.all(5),
-                height: 45,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 10,left: 20),
-                  child: Text('Personal Information',style: TextStyle(fontSize: 17,color: Colors.white),),
-                ),
-              ),
-              SizedBox(height: 10,),
-              studentInfoRow('Name', user.name),
-              SizedBox(height: 8,),
-              studentInfoRow('Email', user.email),
-              SizedBox(height: 8,),
-              studentInfoRow('National ID', user.nationalId),
-              SizedBox(height: 8,),
-              studentInfoRow('Faculty ID', user.facultyId),
-              SizedBox(height: 8,),
-              studentInfoRow('Department', user.department),
-              SizedBox(height: 8,),
-              studentInfoRow('Grade', user.grade),
-            ],
-          ),
+        title: Text(
+          'Profiles details',
+          style: Theme.of(context).textTheme.headline6,
+          textAlign: TextAlign.center,
         ),
       ),
-    );
-  }
-  Widget studentInfoRow(String info,String studentInfo){
-    return Row(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left : 35),
-          child: Text(info,style: TextStyle(fontSize:17,color:Colors.black87 ),),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 25, 0, 50),
+              child: Container(
+                width: double.infinity,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                      child: Stack(
+                        children: <Widget>[
+                          CircleAvatar(
+                            radius: 70,
+                            child: ClipOval(
+                              child: Image.asset(
+                                'images/1626105729175.jpg',
+                                height: 150,
+                                width: 150,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 1,
+                            right: 1,
+                            child: Container(
+                              height: 40,
+                              width: 40,
+                             // child: Icon(
+                             //   Icons.add_a_photo,
+                             //   color: Colors.white,
+                           //   ),
+                              //decoration: BoxDecoration(
+                              //    color: Colors.deepOrange,
+                              //    borderRadius:
+                             //         BorderRadius.all(Radius.circular(20))),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      child: Column(
+                        children: [
+                          Text('${user.name}',
+                              style: Theme.of(context).textTheme.subtitle1),
+                          Text('${user.grade}',
+                              style: Theme.of(context).textTheme.subtitle1),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30)),
+                  gradient: LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [Colors.black54, Color.fromRGBO(0, 41, 102, 1)])),
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 25, 20, 4),
+                    child: Container(
+                      height: 60,
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            '${user.name}',
+                            style: TextStyle(color: Colors.white70),
+                          ),
+                        ),
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          border:
+                              Border.all(width: 1.0, color: Colors.white70)),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 5, 20, 4),
+                    child: Container(
+                      height: 60,
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            '${user.email}',
+                            style: TextStyle(color: Colors.white70),
+                          ),
+                        ),
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          border:
+                              Border.all(width: 1.0, color: Colors.white70)),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 5, 20, 4),
+                    child: Container(
+                      height: 60,
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Nationality Number   29804091200652   ',
+                            style: TextStyle(color: Colors.white70),
+                          ),
+                        ),
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          border:
+                              Border.all(width: 1.0, color: Colors.white70)),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 5, 20, 4),
+                    child: Container(
+                      height: 60,
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            ' Mobile          +201098994284',
+                            style: TextStyle(color: Colors.white70),
+                          ),
+                        ),
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          border:
+                              Border.all(width: 1.0, color: Colors.white70)),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 5, 20, 4),
+                    child: Container(
+                      height: 60,
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Birth place           Mansoura',
+                            style: TextStyle(color: Colors.white70),
+                          ),
+                        ),
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          border:
+                              Border.all(width: 1.0, color: Colors.white70)),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 5, 20, 4),
+                    child: Container(
+                      height: 60,
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Nationality          Egyptian',
+                            style: TextStyle(color: Colors.white70),
+                          ),
+                        ),
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          border:
+                              Border.all(width: 1.0, color: Colors.white70)),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
-        SizedBox(width: 30,),
-        Text(studentInfo,style: TextStyle(fontSize:17,color:Colors.white ),),
-
-      ],
+      ),
     );
   }
 }

@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:triple_s_project/helprs/constant.dart';
 import 'package:triple_s_project/helprs/end_points.dart';
+
 import 'package:triple_s_project/model/user.dart';
 
 class Auth extends ChangeNotifier {
   final _helper = Constant.helper;
   AuthResponse _logInResponse;
   User _user;
+  bool _isActiveRememberMe = false;
   User get user {
     return _user;
   }
@@ -68,6 +70,9 @@ class Auth extends ChangeNotifier {
       throw e;
     }
   }
+
+
+
 
   /// دي الليست الي هتسخدميها في عرض مواد اليوم
   List<TableSubject> selectedSubjects = [];

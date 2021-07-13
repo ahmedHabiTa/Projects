@@ -21,37 +21,37 @@ class _ResultsScreenState extends State<ResultsScreen> {
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
             child: Column(children: <Widget>[
-          Container(
-            height: 32.0,
-            color: Color(0xff5b418f),
-          ),
-          Container(
-              child: Column(
-            children: <Widget>[
               Container(
-                  padding: EdgeInsets.all(15.0),
-                  color: Color(0xff5b418f),
-                  child: TopRow()),
-
-              // دي الايام الموجودة في جدول الطالب
-              Container(
-                height: 100,
-                padding: EdgeInsets.all(15.0),
-                color: Color(0xff5b418f),
-                child: DaysRow(
-                  table: table,
-                ),
+                height: 32.0,
+                color: Color(0xff90caf9),
               ),
-              Column(
-                  // هنا بنعرض ليست المواد بناء علي اليوم
-                  children: selectedSubjects
-                      .map((e) => CardWidget(
+              Container(
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                          padding: EdgeInsets.all(15.0),
+                          color: Color(0xff90caf9),
+                          child: TopRow()),
+
+                      // دي الايام الموجودة في جدول الطالب
+                      Container(
+                        height: 100,
+                        padding: EdgeInsets.all(15.0),
+                        color: Color(0xff90caf9),
+                        child: DaysRow(
+                          table: table,
+                        ),
+                      ),
+                      Column(
+                        // هنا بنعرض ليست المواد بناء علي اليوم
+                          children: selectedSubjects
+                              .map((e) => CardWidget(
                             subjects: e,
                           ))
-                      .toList()),
-            ],
-          ))
-        ])));
+                              .toList()),
+                    ],
+                  ))
+            ])));
   }
 }
 
@@ -78,20 +78,20 @@ class _DaysRowState extends State<DaysRow> {
           itemCount: widget.table.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (ctx, i) => InkWell(
-                onTap: () {
-                  setState(() {
-                    selectedDayId = widget.table[i].id;
-                  });
+            onTap: () {
+              setState(() {
+                selectedDayId = widget.table[i].id;
+              });
 // هنا بنغير المواد بناء علي اليوم الي الطالب هيختارة
-                  Provider.of<Auth>(context, listen: false)
-                      .changeSelectedSubjects(widget.table[i].subjects);
-                },
-                child: DateWidget(
-                  table: widget.table[i],
-                  // الشرط دا عشان لون الاختيار
-                  selected: selectedDayId == widget.table[i].id ? false : true,
-                ),
-              )),
+              Provider.of<Auth>(context, listen: false)
+                  .changeSelectedSubjects(widget.table[i].subjects);
+            },
+            child: DateWidget(
+              table: widget.table[i],
+              // الشرط دا عشان لون الاختيار
+              selected: selectedDayId == widget.table[i].id ? false : true,
+            ),
+          )),
     );
   }
 }
@@ -119,7 +119,7 @@ class CardWidget extends StatelessWidget {
             child: Container(
               height: 100.0,
               decoration: BoxDecoration(
-                color: Color(0xff654f91),
+                color: Color(0xff90caf9),
               ),
               child: Container(
                 margin: EdgeInsets.only(left: 4.0),
@@ -137,12 +137,12 @@ class CardWidget extends StatelessWidget {
                           children: <Widget>[
                             Text(subjects.lecTime,
                                 style: TextStyle(
-                                  color: Color(0xff654f91),
+                                  color: Color(0xff0d47a1),
                                 )),
                             VerticalDivider(),
                             Text(subjects.online,
                                 style: TextStyle(
-                                  color: Color(0xff654f91),
+                                  color: Color(0xff0d47a1),
                                 )),
                           ],
                         ),
@@ -150,14 +150,14 @@ class CardWidget extends StatelessWidget {
                       Text(
                         subjects.subject,
                         style: TextStyle(
-                            color: Color(0xff654f91),
+                            color: Color(0xff0d47a1),
                             fontSize: 22.0,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
                         subjects.professor,
                         style: TextStyle(
-                            color: Color(0xff654f91),
+                            color: Color(0xff0d47a1),
                             fontSize: 22.0,
                             fontWeight: FontWeight.bold),
                       ),
@@ -180,12 +180,12 @@ class LineGen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: List.generate(
             4,
-            (index) => Container(
-                  height: 2.0,
-                  width: lines[index],
-                  color: Color(0xffd0d2d8),
-                  margin: EdgeInsets.symmetric(vertical: 14.0),
-                )));
+                (index) => Container(
+              height: 2.0,
+              width: lines[index],
+              color: Color(0xffd0d2d8),
+              margin: EdgeInsets.symmetric(vertical: 14.0),
+            )));
   }
 }
 
@@ -214,10 +214,10 @@ class _DateWidgetState extends State<DateWidget> {
         decoration: widget.selected
             ? null
             : BoxDecoration(
-                color: Color(0xffa79abf),
-                borderRadius: BorderRadius.all(Radius.circular(4.0))),
+            color: Color(0xffa79abf),
+            borderRadius: BorderRadius.all(Radius.circular(4.0))),
         child:
-            Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+        Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           Text(
             table.dayId,
             style: TextStyle(

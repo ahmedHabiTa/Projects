@@ -17,7 +17,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     List<Widget> widgets = [
-      SliderItem('images/slide1.jpg', 'Mansora metro sport'),
+      SliderItem('images/slide1.jpg', 'Mansoura metro sport'),
       SliderItem('images/slide2.jpg', 'Safe exit training'),
       SliderItem('images/slide3.jpg', 'Excellent Award'),
     ];

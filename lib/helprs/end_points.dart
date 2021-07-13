@@ -10,3 +10,4 @@ const LOGOUTURL = "logout.php?id=";
 // subjects
 const SUJECTS = "allSub.php?token=";
 const SUBJECTBYID = "getSubById.php?token=";
+const AssignmentFile = "sendAssignmentFile.php?token=";

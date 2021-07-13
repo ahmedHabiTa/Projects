@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:triple_s_project/screens/auth/login_screen.dart';
-
 import 'providers/allSubjects.dart';
 import 'providers/auth.dart';
 import 'providers/theme_provider.dart';
-
 import 'screens/home/exam_schedule.dart';
 import 'screens/home/home_page.dart';
 import 'screens/home/online.dart';
@@ -13,7 +11,6 @@ import 'screens/home/results.dart';
 import 'screens/student_info_screen.dart';
 import 'screens/subject_profile/details/bank/all_banks_screen.dart';
 import 'screens/subject_profile/details/exam/exams.dart';
-import 'screens/subject_profile/details/quiz/all_quizzes_secreen.dart';
 import 'screens/subject_profile/details/report/reports.dart';
 import 'screens/subject_profile/subject_detail_screen.dart';
 import 'screens/subject_profile/subjects_screen.dart';
@@ -24,7 +21,7 @@ void main() async {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider<ThemeProvider>(
-        create: (context) => ThemeProvider(),
+        create: (context) => ThemeProvider()..getThemeMode(),
       ),
       ChangeNotifierProvider<Auth>(
         create: (context) => Auth(),
@@ -51,7 +48,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           cardColor: Colors.black87,
           buttonColor: Colors.black87,
-          primarySwatch: primaryColor,
+          //primarySwatch: primaryColor,
           accentColor: accentColor,
           // canvasColor: Colors.black87,
           textTheme: ThemeData.light().textTheme.copyWith(
@@ -66,7 +63,7 @@ class MyApp extends StatelessWidget {
           unselectedWidgetColor: Colors.white70,
           cardColor: Colors.white,
           buttonColor: Colors.white,
-          primarySwatch: primaryColor,
+          //primarySwatch: primaryColor,
           accentColor: accentColor,
           canvasColor: Color.fromRGBO(14, 22, 33, 1),
           textTheme: ThemeData.dark().textTheme.copyWith(
