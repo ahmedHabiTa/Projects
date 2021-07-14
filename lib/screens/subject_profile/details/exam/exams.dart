@@ -13,7 +13,7 @@ class _CoursesState extends State<Exams> {
             title: Text(
               'Exams',
               style: Theme.of(context).textTheme.headline6,
-              textAlign: TextAlign.center,
+              //textAlign: TextAlign.center,
             )));
   }
 }
