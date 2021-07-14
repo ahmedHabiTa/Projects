@@ -166,108 +166,19 @@ class _StudentState extends State<StudentInfo> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ))),
-                      Container(
-                        height: 60,
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Name : ${user.name}',
-                              style: TextStyle(color: Colors.white70),
-                            ),
-                          ),
-                        ),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                            border:
-                                Border.all(width: 1.0, color: Colors.white70)),
-                      ),
-                      Container(
-                        height: 60,
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'email : ${user.email}',
-                              style: TextStyle(color: Colors.white70),
-                            ),
-                          ),
-                        ),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                            border:
-                                Border.all(width: 1.0, color: Colors.white70)),
-                      ),
-                      Container(
-                        height: 60,
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Nationality Number : ${user.nationalId}',
-                              style: TextStyle(color: Colors.white70),
-                            ),
-                          ),
-                        ),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                            border:
-                                Border.all(width: 1.0, color: Colors.white70)),
-                      ),
-                      Container(
-                        height: 60,
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Mobile : ${user.mobile}',
-                              style: TextStyle(color: Colors.white70),
-                            ),
-                          ),
-                        ),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                            border:
-                                Border.all(width: 1.0, color: Colors.white70)),
-                      ),
-                      Container(
-                        height: 60,
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Birth place : ${user.birthPlace}',
-                              style: TextStyle(color: Colors.white70),
-                            ),
-                          ),
-                        ),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                            border:
-                                Border.all(width: 1.0, color: Colors.white70)),
-                      ),
-                      Container(
-                        height: 60,
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Nationality : ${user.nationality}',
-                              style: TextStyle(color: Colors.white70),
-                            ),
-                          ),
-                        ),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                            border:
-                                Border.all(width: 1.0, color: Colors.white70)),
-                      ),
+                      customStudentInfoContainer('Name',user.name),
+                      customStudentInfoContainer('email',user.email),
+                      customStudentInfoContainer('Nationality Number',user.nationalId),
+                      customStudentInfoContainer('Mobile',user.mobile),
+                      customStudentInfoContainer('Birth place',user.birthPlace),
+                      customStudentInfoContainer('Nationality',user.nationality),
+                      customStudentInfoContainer('religion',user.religion),
+                      customStudentInfoContainer('acceptance year',user.acceptanceYear),
+                      customStudentInfoContainer('city',user.city),
+                      customStudentInfoContainer('address',user.address),
+                      customStudentInfoContainer('degree',user.degree),
+                      customStudentInfoContainer('percentage',user.percentage),
+                      customStudentInfoContainer('Pre qualification',user.preQualification),
                     ],
                   ),
                 ),
@@ -276,6 +187,25 @@ class _StudentState extends State<StudentInfo> {
           )
         ],
       ),
+    );
+  }
+  Widget customStudentInfoContainer(String title,String text){
+    return Container(
+      height: 60,
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            '$title : $text',
+            style: TextStyle(color: Colors.white70),
+          ),
+        ),
+      ),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          border:
+          Border.all(width: 1.0, color: Colors.white70)),
     );
   }
 }

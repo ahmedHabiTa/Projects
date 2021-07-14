@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:triple_s_project/screens/auth/login_screen.dart';
+import 'package:triple_s_project/screens/notification.dart';
 import 'providers/allSubjects.dart';
 import 'providers/auth.dart';
 import 'providers/theme_provider.dart';
@@ -83,12 +84,13 @@ class MyApp extends StatelessWidget {
         '/exams': (context) => Exams(),
         // ALLQuizzesScreen.routeName: (context) => ALLQuizzesScreen(),
         '/results': (context) => ResultsScreen(),
-        '/Exams Schedule': (context) => ExamsSchedule(),
         '/std': (context) => StudentInfo(),
         '/settings': (context) => ThemesScreen(),
         AllSubject.routeName: (context) => AllSubject(),
         SubjectDetailScreen.routeName: (context) => SubjectDetailScreen(),
         Banks.routeName: (context) => Banks(),
+        NotificationScreen.routeName: (context) => NotificationScreen(),
+        ExamsTable.routeName: (context) => ExamsTable(),
       },
       home: Consumer<Auth>(
           builder: (context, auth, child) => FutureBuilder<bool>(

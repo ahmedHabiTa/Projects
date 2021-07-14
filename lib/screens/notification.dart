@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:triple_s_project/providers/auth.dart';
 
 class NotificationScreen extends StatefulWidget {
+  static const routeName = '/notifications';
   @override
   _NotificationScreenState createState() => _NotificationScreenState();
 }

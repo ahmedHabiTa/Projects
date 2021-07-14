@@ -1,8 +1,12 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 import 'package:triple_s_project/providers/theme_provider.dart';
+import 'package:triple_s_project/screens/home/exam_schedule.dart';
+import 'package:triple_s_project/screens/notification.dart';
+import 'package:triple_s_project/screens/subject_profile/subjects_screen.dart';
 import '../providers/auth.dart';
 import '../screens/home/home_page.dart';
 
@@ -27,6 +31,18 @@ class _MainDrawerState extends State<MainDrawer> {
               // padding: EdgeInsets.all(8),
               child: ListView(
                 children: [
+                  SizedBox(
+                    height: 10,
+                  ),
+                  CircleAvatar(
+                    radius: 35,
+                    child: ClipOval(
+                      child: Image.asset(
+                        'images/center_logo.jpg',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
                   // Padding(
                   //   padding: const EdgeInsets.only(top: 10),
                   //   child: CircleAvatar(
@@ -34,44 +50,43 @@ class _MainDrawerState extends State<MainDrawer> {
                   //     backgroundImage: NetworkImage(user.image ?? ''),
                   //   ),
                   // ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    user.name,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w300,
-                      height: 0.2,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
+                  // SizedBox(
+                  //   height: 10,
+                  // ),
+                  // Text(
+                  //   user.name,
+                  //   style: TextStyle(
+                  //     color: Colors.blue[400],
+                  //     fontWeight: FontWeight.w500,
+                  //     height: 0.2,),
+                  //   textAlign: TextAlign.center,
+                  // ),
                   SizedBox(
                     height: 10,
                   ),
                   Text(
                     user.department,
                     style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w300,
-                      height: 0.2,
+                      color: Colors.blue[600],
+                      fontWeight: FontWeight.w400,
+                      height: 0.5,
                     ),
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 5,
                   ),
-                  Text(
-                    user.grade,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w300,
-                      height: 0.2,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
+                  // Text(
+                  //   user.grade,
+                  //   style: TextStyle(
+                  //     color: Colors.blue[400],
+                  //     fontWeight: FontWeight.w300,
+                  //     height: 0.2,
+                  //   ),
+                  //   textAlign: TextAlign.center,
+                  // ),
                   SizedBox(
-                    height: 10,
+                    height: 3,
                   ),
                   customDrawerItem(themeMode, context, () {
                     Navigator.of(context)
@@ -80,14 +95,19 @@ class _MainDrawerState extends State<MainDrawer> {
                   customDrawerItem(themeMode, context, () {
                     Navigator.pushNamed(context, '/std');
                   }, Icons.person, 'Student Info'),
-                  customDrawerItem(themeMode, context, () {}, Icons.table_view,
-                      'Study Timetable'),
-                  customDrawerItem(themeMode, context, () {}, Icons.description,
-                      'Academic Results'),
-                  customDrawerItem(themeMode, context, () {},
-                      Icons.menu_book_sharp, 'Courses'),
-                  customDrawerItem(themeMode, context, () {},
-                      Icons.notification_important_outlined, 'Notification'),
+                  customDrawerItem(themeMode, context, () {
+                    Navigator.pushNamed(context, '/results');
+                  }, Icons.table_view, 'Study Timetable'),
+                  customDrawerItem(themeMode, context, () {
+                    Navigator.of(context).pushNamed(ExamsTable.routeName);
+                  }, Icons.description,
+                      'Exam Schedule'),
+                  customDrawerItem(themeMode, context, () {
+                    Navigator.of(context).pushNamed(AllSubject.routeName);
+                  }, Icons.menu_book_sharp, 'Courses'),
+                  customDrawerItem(themeMode, context, () {
+                   Navigator.of(context).pushNamed(NotificationScreen.routeName);
+                  }, Icons.notification_important_outlined, 'Notification'),
                   customDrawerItem(themeMode, context, () {
                     Navigator.pushNamed(context, '/settings');
                   }, Icons.settings, 'Settings'),
@@ -126,6 +146,22 @@ class _MainDrawerState extends State<MainDrawer> {
               }
             },
           ),
+          Positioned(
+            width: 50,
+            top: 25,
+            left: 5,
+            child: Container(
+              height: 50,
+              color: Colors.transparent,
+              child: GestureDetector(
+                onTap: (){
+                  setState(() {
+                    value ==0 ? value = 1 : value =0 ;
+                  });
+                },
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -140,19 +176,19 @@ class _MainDrawerState extends State<MainDrawer> {
   ) {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      color: Colors.blue[300],
+      color: Colors.blue[200],
       child: Padding(
-        padding: EdgeInsets.all(2),
+        padding: EdgeInsets.all(1),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.black87,
+            color: Colors.white,
             borderRadius: BorderRadius.circular(20),
           ),
           child: ListTile(
-            leading: Icon(icon, size: 30, color: Colors.white),
+            leading: Icon(icon, size: 30, color: Colors.blue[500]),
             title: Text(
               text,
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.black87),
             ),
             onTap: navigateTo,
           ),

@@ -15,12 +15,11 @@ class MyHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: Icon(Icons.menu),
           title: Text("Home"),
           elevation: 0,
         ),
         key: scaffoldKey,
-        //drawer: MainDrawer(),
+        drawer: MainDrawer(),
         body: Column(children: [
           Expanded(
               child: SingleChildScrollView(
@@ -76,7 +75,7 @@ class ElearingGrid extends StatelessWidget {
     final user = Provider.of<Auth>(context).user;
 
     return Container(
-        height: deviceSize.height * .25,
+        height: deviceSize.height * .27,
         child: GridView.count(
           physics: NeverScrollableScrollPhysics(),
           crossAxisCount: 2,
@@ -106,7 +105,7 @@ class ElearingGrid extends StatelessWidget {
     return Card(
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0)),
-        elevation: 2.0,
+        elevation: 10,
         color: Colors.white,
         margin: EdgeInsets.all(8.0),
         child: InkWell(
