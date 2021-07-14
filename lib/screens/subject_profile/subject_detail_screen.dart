@@ -39,8 +39,7 @@ class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
             ? Center(
                 child: CircularProgressIndicator(),
               )
-            : SingleChildScrollView(
-                child: Column(
+            : Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -60,7 +59,7 @@ class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
                     );
                   }),
                 ],
-              )));
+              ));
   }
 
   Widget _buildCard(String title, image, Function function) {
@@ -69,8 +68,8 @@ class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
         child: Card(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0)),
-          elevation: 6.0,
-          color: Colors.white54,
+          elevation: 2.0,
+          color: Colors.white,
           margin: EdgeInsets.all(15.0),
           child: Center(
             child: ListTile(
@@ -80,7 +79,7 @@ class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
               leading: Image.asset(image),
               title: Text(title,
                   textAlign: TextAlign.center,
-                  style: new TextStyle(fontSize: 20.0, fontFamily: 'Satisfy')),
+                  style: TextStyle(fontSize: 20.0, fontFamily: 'Satisfy')),
             ),
           ),
         ));

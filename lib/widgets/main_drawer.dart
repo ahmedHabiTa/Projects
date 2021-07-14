@@ -7,7 +7,6 @@ import '../providers/auth.dart';
 import '../screens/home/home_page.dart';
 
 class MainDrawer extends StatefulWidget {
-  static const routeName = 'Drawer';
   @override
   _MainDrawerState createState() => _MainDrawerState();
 }
@@ -114,22 +113,6 @@ class _MainDrawerState extends State<MainDrawer> {
                   child: MyHome(),
                 ));
               }),
-          Positioned(
-            top: 35,
-            left: 10,
-            child: Container(
-              color: Colors.transparent,
-              height: 30,
-              width: 30,
-              child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    value == 0 ? value = 1 : value = 0;
-                  });
-                },
-              ),
-            ),
-          ),
           GestureDetector(
             onHorizontalDragUpdate: (e) {
               if (e.delta.dx > 0) {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:triple_s_project/screens/auth/login_screen.dart';
-import 'package:triple_s_project/widgets/main_drawer.dart';
 import 'providers/allSubjects.dart';
 import 'providers/auth.dart';
 import 'providers/theme_provider.dart';
@@ -49,7 +48,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           cardColor: Colors.black87,
           buttonColor: Colors.black87,
-         // primarySwatch: primaryColor,
+          primarySwatch: primaryColor,
           accentColor: accentColor,
           // canvasColor: Colors.black87,
           textTheme: ThemeData.light().textTheme.copyWith(
@@ -64,7 +63,7 @@ class MyApp extends StatelessWidget {
           unselectedWidgetColor: Colors.white70,
           cardColor: Colors.white,
           buttonColor: Colors.white,
-         // primarySwatch: primaryColor,
+          primarySwatch: primaryColor,
           accentColor: accentColor,
           canvasColor: Color.fromRGBO(14, 22, 33, 1),
           textTheme: ThemeData.dark().textTheme.copyWith(
@@ -90,7 +89,6 @@ class MyApp extends StatelessWidget {
         AllSubject.routeName: (context) => AllSubject(),
         SubjectDetailScreen.routeName: (context) => SubjectDetailScreen(),
         Banks.routeName: (context) => Banks(),
-        MainDrawer.routeName: (context) => MainDrawer(),
       },
       home: Consumer<Auth>(
           builder: (context, auth, child) => FutureBuilder<bool>(

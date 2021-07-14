@@ -25,12 +25,18 @@ class MyHome extends StatelessWidget {
           Expanded(
               child: SingleChildScrollView(
                   child: Column(children: [
-            Text("Grow Your own Skill \n  by Online Learing",
-                style: TextStyle(fontSize: 22)),
+            Padding(
+              child: Text("Grow Your own Skill \n  by Online Learning",
+                  style: TextStyle(fontSize: 22)),
+              padding: EdgeInsets.all(8),
+            ),
+            Divider(color: Colors.blueAccent),
             HeadLine("News"),
             CarouselWithIndicator(),
+            Divider(color: Colors.blueAccent),
             HeadLine("E-learning"),
             ElearingGrid(),
+            Divider(color: Colors.blueAccent),
             HeadLine("Web Sites"),
             WebSitesGrid()
           ])))
@@ -53,7 +59,8 @@ class HeadLine extends StatelessWidget {
               height: 10,
               width: 10,
               decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(5))),
+                  color: Colors.blueAccent,
+                  borderRadius: BorderRadius.circular(5))),
           Padding(
               padding: EdgeInsets.symmetric(horizontal: 8),
               child: Text(text, style: TextStyle(fontSize: 22)))
@@ -70,7 +77,7 @@ class ElearingGrid extends StatelessWidget {
     final user = Provider.of<Auth>(context).user;
 
     return Container(
-        height: deviceSize.height * 0.55,
+        height: deviceSize.height * .25,
         child: GridView.count(
           physics: NeverScrollableScrollPhysics(),
           crossAxisCount: 2,
@@ -82,19 +89,7 @@ class ElearingGrid extends StatelessWidget {
               },
             ),
             _buildHomeCard(
-              'Online Session',
-              () {
-                Navigator.pushNamed(context, '/online');
-              },
-            ),
-            _buildHomeCard(
-              'Exams',
-              () {
-                Navigator.pushNamed(context, '/Exams Tables');
-              },
-            ),
-            _buildHomeCard(
-              'Final Results',
+              'Table',
               () {
                 Navigator.push(
                     context,
@@ -103,7 +98,7 @@ class ElearingGrid extends StatelessWidget {
                               table: user.table,
                             )));
               },
-            ),
+            )
           ],
         ));
   }
@@ -124,7 +119,7 @@ class ElearingGrid extends StatelessWidget {
                 children: <Widget>[
                   Icon(
                     Icons.text_snippet,
-                    color: Colors.pink,
+                    color: Colors.blueAccent,
                     size: 55,
                   ),
                   Text(title,
@@ -189,7 +184,7 @@ class WebSitesGrid extends StatelessWidget {
                 children: <Widget>[
                   Icon(
                     Icons.text_snippet,
-                    color: Colors.pink,
+                    color: Colors.blueAccent,
                     size: 55,
                   ),
                   Text(title,

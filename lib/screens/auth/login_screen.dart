@@ -19,12 +19,10 @@ class LoginScreenState extends State<LoginScreen> {
     if (!globalKey.currentState.validate()) {
       return;
     }
-
     setState(() {
       loading = true;
     });
     try {
-      print(fId + nId);
       bool isAuth = await Provider.of<Auth>(context, listen: false)
           .login(fId: fId, nId: nId);
       print("111111111111");
@@ -45,6 +43,7 @@ class LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     var themeMode = Provider.of<ThemeProvider>(context).tm;
     return SafeArea(
         child: Scaffold(
@@ -54,9 +53,10 @@ class LoginScreenState extends State<LoginScreen> {
         child: Padding(
           padding: EdgeInsets.all(16),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                height: 20,
+                height: size.height * .1,
               ),
               FadeAnimation(
                 1,
@@ -65,14 +65,14 @@ class LoginScreenState extends State<LoginScreen> {
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(30),
                       child: Image.asset(
-                        'images/loginscreen.jpg',
+                        'images/login_image.jpg',
                       )),
                   height: 220,
                   width: double.infinity,
                 ),
               ),
               SizedBox(
-                height: 15,
+                height: size.height * .1,
               ),
               FadeAnimation(
                 1.3,
@@ -111,8 +111,7 @@ class LoginScreenState extends State<LoginScreen> {
                   onChanged: (val) {
                     nId = val;
                   },
-                  validator: (val) =>
-                  val.isEmpty ? 'Enter your ID ' : null,
+                  validator: (val) => val.isEmpty ? 'Enter your ID ' : null,
                   obscureText: false,
                 ),
               ),
@@ -158,7 +157,7 @@ class LoginScreenState extends State<LoginScreen> {
                         fId = val;
                       },
                       validator: (val) =>
-                      val.length < 5 ? ' Enter a password   ' : null,
+                          val.length < 5 ? ' Enter a password   ' : null,
                       obscureText: obscureText,
                     ),
                     Padding(
@@ -170,7 +169,7 @@ class LoginScreenState extends State<LoginScreen> {
                         ),
                         onPressed: () {
                           setState(() {
-                            obscureText = !obscureText;
+                            obscureText = obscureText;
                           });
                         },
                       ),
@@ -178,7 +177,9 @@ class LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 60.0),
+              SizedBox(
+                height: size.height * .1,
+              ),
               FadeAnimation(
                 2.6,
                 Container(
@@ -198,8 +199,8 @@ class LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     )
-                  // : CircularProgressIndicator(),
-                ),
+                    // : CircularProgressIndicator(),
+                    ),
               ),
               //  : CircularProgressIndicator(),
             ],
