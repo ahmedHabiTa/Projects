@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           cardColor: Colors.black87,
           buttonColor: Colors.black87,
-          primarySwatch: primaryColor,
+          //primarySwatch: primaryColor,
           accentColor: accentColor,
           // canvasColor: Colors.black87,
           textTheme: ThemeData.light().textTheme.copyWith(
@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
           unselectedWidgetColor: Colors.white70,
           cardColor: Colors.white,
           buttonColor: Colors.white,
-          primarySwatch: primaryColor,
+          //primarySwatch: primaryColor,
           accentColor: accentColor,
           canvasColor: Color.fromRGBO(14, 22, 33, 1),
           textTheme: ThemeData.dark().textTheme.copyWith(

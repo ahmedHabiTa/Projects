@@ -154,120 +154,122 @@ class _StudentState extends State<StudentInfo> {
                       colors: [Colors.black54, Color.fromRGBO(0, 41, 102, 1)])),
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(10, 5, 10, 4),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    Padding(
-                        padding: EdgeInsets.symmetric(vertical: 4),
-                        child: Text('Student Information',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ))),
-                    Container(
-                      height: 60,
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            'Name : ${user.name}',
-                            style: TextStyle(color: Colors.white70),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      Padding(
+                          padding: EdgeInsets.symmetric(vertical: 4),
+                          child: Text('Student Information',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ))),
+                      Container(
+                        height: 60,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'Name : ${user.name}',
+                              style: TextStyle(color: Colors.white70),
+                            ),
                           ),
                         ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            border:
+                                Border.all(width: 1.0, color: Colors.white70)),
                       ),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          border:
-                              Border.all(width: 1.0, color: Colors.white70)),
-                    ),
-                    Container(
-                      height: 60,
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            'email : ${user.email}',
-                            style: TextStyle(color: Colors.white70),
+                      Container(
+                        height: 60,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'email : ${user.email}',
+                              style: TextStyle(color: Colors.white70),
+                            ),
                           ),
                         ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            border:
+                                Border.all(width: 1.0, color: Colors.white70)),
                       ),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          border:
-                              Border.all(width: 1.0, color: Colors.white70)),
-                    ),
-                    Container(
-                      height: 60,
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            'Nationality Number : ${user.nationalId}',
-                            style: TextStyle(color: Colors.white70),
+                      Container(
+                        height: 60,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'Nationality Number : ${user.nationalId}',
+                              style: TextStyle(color: Colors.white70),
+                            ),
                           ),
                         ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            border:
+                                Border.all(width: 1.0, color: Colors.white70)),
                       ),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          border:
-                              Border.all(width: 1.0, color: Colors.white70)),
-                    ),
-                    Container(
-                      height: 60,
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            'Mobile : ${user.mobile}',
-                            style: TextStyle(color: Colors.white70),
+                      Container(
+                        height: 60,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'Mobile : ${user.mobile}',
+                              style: TextStyle(color: Colors.white70),
+                            ),
                           ),
                         ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            border:
+                                Border.all(width: 1.0, color: Colors.white70)),
                       ),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          border:
-                              Border.all(width: 1.0, color: Colors.white70)),
-                    ),
-                    Container(
-                      height: 60,
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            'Birth place : ${user.birthPlace}',
-                            style: TextStyle(color: Colors.white70),
+                      Container(
+                        height: 60,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'Birth place : ${user.birthPlace}',
+                              style: TextStyle(color: Colors.white70),
+                            ),
                           ),
                         ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            border:
+                                Border.all(width: 1.0, color: Colors.white70)),
                       ),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          border:
-                              Border.all(width: 1.0, color: Colors.white70)),
-                    ),
-                    Container(
-                      height: 60,
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            'Nationality : ${user.nationality}',
-                            style: TextStyle(color: Colors.white70),
+                      Container(
+                        height: 60,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'Nationality : ${user.nationality}',
+                              style: TextStyle(color: Colors.white70),
+                            ),
                           ),
                         ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            border:
+                                Border.all(width: 1.0, color: Colors.white70)),
                       ),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          border:
-                              Border.all(width: 1.0, color: Colors.white70)),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
